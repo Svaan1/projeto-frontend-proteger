@@ -25,8 +25,12 @@ services:
   web:
     build: .
     container_name: web
+    volumes:
+      - ./src/:/code/src
     ports:
       - 8080:8080
     depends_on:
       - postgres
       - grafana
+    env_file:
+      - .env
