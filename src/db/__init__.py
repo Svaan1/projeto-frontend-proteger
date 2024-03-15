@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from os import getenv
 
 Base = declarative_base()
-engine = create_engine(
-    'postgresql+psycopg2://postgres:123@localhost:5433/proteger')
+engine = create_engine(os.getenv("DATABASE_URL"))
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
