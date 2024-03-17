@@ -16,3 +16,8 @@ InvalidPermissions = HTTPException(
     status_code=401,
     detail="You do not have permission for this action."
 )
+
+FileAlreadyExists = HTTPException(
+    status_code=409,
+    detail="File with given name already exists."
+)
