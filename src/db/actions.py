@@ -1,10 +1,11 @@
 from typing import Optional
 
 from src.db import SessionLocal
-from src.db.models import User
+from src.db.models import User, Upload
 from src.security import hash_password, manager
 from sqlalchemy.orm import Session
 
+from datetime import date
 
 def get_user_by_name(name: str, db: Session) -> Optional[User]:
     """
@@ -44,3 +45,19 @@ def create_user(name: str, password: str, age: int, email: str, db: Session) -> 
     db.add(user)
     db.commit()
     return user
+
+def create_upload(user: User, filename: str, db: Session) -> Upload:
+    """
+    Creates and commits a new upload object to the database
+    Args:
+        user: the owner of the file
+        filename: The name of the created file
+        db: The active db session
+
+    Returns:
+        The newly created upload.
+    """
+    upload = Upload(filename=filename, date=date.today(), user=user)
+    db.add(upload)
+    db.commit()
+    return upload
