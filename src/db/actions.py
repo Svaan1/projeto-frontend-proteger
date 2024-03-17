@@ -59,5 +59,5 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
     """
     upload = Upload(filename=filename, date=date.today(), user=user)
     db.add(upload)
-    db.commit()
+    db.flush()
     return upload

@@ -26,4 +26,5 @@ def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_s
     except IntegrityError:
         raise FileAlreadyExists
     
+    db.commit()
     pass
