@@ -13,6 +13,8 @@ class User(Base):
     email = Column(String(32), unique=True)
     password = Column(String(80))
 
+    uploads = relationship('Upload', backref='user', cascade='all')
+
 class Upload(Base):
     __tablename__ = "uploads"
 
@@ -22,7 +24,7 @@ class Upload(Base):
     date = Column(Date)
 
     user_id = Column(Integer, ForeignKey("users.id"))
-    user = relationship('User', backref='forms')
+    forms = relationship('Form', backref='upload', cascade='all, delete-orphan')
 
 
 class Form(Base):
@@ -43,7 +45,7 @@ class Form(Base):
     # ... 
 
     upload_id = Column(Integer, ForeignKey("uploads.id"))
-    upload = relationship('Upload', backref='forms')
+    residents = relationship('Resident', backref='form', cascade='all, delete-orphan')
 
 class Resident(Base):
     __tablename__ = "residents"
@@ -59,4 +61,3 @@ class Resident(Base):
     education = Column(String(100))
 
     form_id = Column(Integer, ForeignKey("forms.id"))
-    user = relationship('Form', backref='residents')
