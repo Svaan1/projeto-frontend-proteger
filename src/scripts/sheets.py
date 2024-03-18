@@ -1,7 +1,6 @@
 import pandas
 
 from datetime import datetime
-from dateutil.parser import parse
 
 TWO_DIGIT_DATE_FORMAT = '%d/%m/%y'
 FOUR_DIGIT_DATE_FORMAT = '%d/%m/%Y'
@@ -126,10 +125,6 @@ def get_residents(row):
 
     return residents
 
-
-
-
-
 def find_marked_option(row, current_resident, resident, option_range):
     for option_number in option_range:
         current_option = row[f'outros mor {option_number}']
@@ -138,7 +133,6 @@ def find_marked_option(row, current_resident, resident, option_range):
 
         if result.lower() == 'x':
             return RESIDENT_QUESTION_RESULTS[option_number]
-
 
 def is_valid(value, instance=None):
     if pandas.isnull(value):
