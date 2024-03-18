@@ -31,11 +31,14 @@ class Form(Base):
     id = Column(Integer, primary_key=True)
 
     date = Column(Date)
+    district = Column(String(50))
     address = Column(String(100))
     coord_s = Column(Double)
     coord_w = Column(Double)
     altitude = Column(Integer)
-
+    ivge = Column(Integer)
+    ivee = Column(Integer)
+    
     # TODO: add the 40 questions to columns later
     # ... 
 
