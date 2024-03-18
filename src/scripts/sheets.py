@@ -52,9 +52,9 @@ def get_current_form(row):
             current_form['date'] = date.date()
         if type(date) is str:
             try:
-                current_form['data'] = datetime.strptime(date, TWO_DIGIT_DATE_FORMAT).date()
+                current_form['date'] = datetime.strptime(date, TWO_DIGIT_DATE_FORMAT).date()
             except:
-                current_form['data'] = datetime.strptime(date, FOUR_DIGIT_DATE_FORMAT).date()
+                current_form['date'] = datetime.strptime(date, FOUR_DIGIT_DATE_FORMAT).date()
     
     district = row['bairro pela data']
     if is_valid(district, str):
@@ -73,8 +73,8 @@ def get_current_form(row):
         current_form['coord_w'] = coord_w
 
     altitude = row['altitude']
-    if is_valid(altitude, int):
-        current_form['altitude'] = altitude
+    if is_valid(altitude, float):
+        current_form['altitude'] = int(altitude)
 
     ivge = row['IVGE']
     if is_valid(ivge, int):
