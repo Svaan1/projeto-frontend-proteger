@@ -63,7 +63,7 @@ def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_ses
     if upload.user_id != active_user.id:
         raise InvalidPermissions
     
-    delete_upload_if_exists(upload_id, db)
+    delete_upload_by_id(upload_id, db)
 
     file_path = Path("src/static/uploads/" + upload.filename)
 
