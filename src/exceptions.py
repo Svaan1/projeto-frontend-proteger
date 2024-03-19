@@ -37,3 +37,8 @@ FileSizeExceeded = HTTPException(
     status_code=413,
     detail="File size exceeds the maximum allowed size (5 MB)."
 )
+
+FileNotFound = HTTPException(
+    status_code=404,
+    detail="File could not be found."
+)

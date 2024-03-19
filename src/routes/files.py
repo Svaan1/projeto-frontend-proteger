@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, UploadFile
+from fastapi.responses import FileResponse
 
 from src.db import get_session
 from src.db.actions import *
 from src.security import manager
-from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType, InvalidPermissions, FileSizeExceeded
+from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType, InvalidPermissions, FileSizeExceeded, FileNotFound
 from src.scripts.sheets import transform_file_data
 
 from src.models.file import UploadResponse
@@ -77,3 +78,17 @@ def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_ses
     db.commit()
     return
 
+@router.get("/{upload_id}", status_code=200)
+def serve_file(upload_id: int,  active_user=Depends(manager), db=Depends(get_session)) -> FileResponse:
+    upload = get_upload_by_id(upload_id, db)
+
+    if not upload:
+        raise FileNotFound
+
+    if upload.user_id != active_user.id:
+        raise InvalidPermissions
+
+    file_path = UPLOADS_DIRECTORY + upload.filename
+
+    headers = {'Content-Disposition': f'attachment; filename="{upload.filename}"'}
+    return FileResponse(file_path, headers=headers)    
