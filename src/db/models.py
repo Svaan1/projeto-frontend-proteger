@@ -21,7 +21,7 @@ class Upload(Base):
     id = Column(Integer, primary_key=True)
 
     filename = Column(String(100), unique=True)
-    date = Column(DateTime)
+    datetime = Column(DateTime)
 
     user_id = Column(Integer, ForeignKey("users.id"))
     forms = relationship('Form', backref='upload', cascade='all, delete-orphan')
