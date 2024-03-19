@@ -57,7 +57,7 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
     Returns:
         The newly created upload.
     """
-    upload = Upload(filename=filename, date=datetime.now(), user=user)
+    upload = Upload(filename=filename, datetime=datetime.now(), user=user)
     db.add(upload)
     db.flush()
     return upload
