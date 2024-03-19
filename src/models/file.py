@@ -5,7 +5,7 @@ from datetime import datetime
 class UploadBase(BaseModel):
     id: int
     filename: str
-    date: datetime
+    datetime: datetime
 
 class UploadResponse(UploadBase):
 
