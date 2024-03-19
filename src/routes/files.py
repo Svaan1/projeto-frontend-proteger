@@ -24,7 +24,7 @@ def get_user_files(active_user=Depends(manager), db=Depends(get_session)) -> lis
 
 
 @router.post("/", status_code=201)
-def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db=Depends(get_session)) -> None:
+async def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db=Depends(get_session)) -> None:
     """
     Uploads raw file (.xlsx) to storage and turns it into organized database tables 
     """
@@ -46,11 +46,12 @@ def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db
 
     create_forms_and_residents_from_list(upload, forms, residents, db)
 
+    file.file.seek(0)
+
     shutil.os.makedirs("./src/static/uploads/", exist_ok=True)
     with open(f"./src/static/uploads/{file.filename}", "wb") as f:
             shutil.copyfileobj(file.file, f)
 
-    db.commit()
     return
     
 @router.delete("/{upload_id}", status_code=204)
