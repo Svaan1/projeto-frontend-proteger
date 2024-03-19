@@ -6,19 +6,22 @@ from src.security import manager
 from src.exceptions import FileAlreadyExists
 from src.scripts.sheets import transform_file_data
 
+from src.models.file import UploadResponse
+
 from sqlalchemy.exc import IntegrityError
 
 router = APIRouter(prefix="/files")
 
-@router.get("/")
-def get_user_files(active_user=Depends(manager), db=Depends(get_session)):
+@router.get("/", response_model=list[UploadResponse])
+def get_user_files(active_user=Depends(manager), db=Depends(get_session)) -> list[UploadResponse]:
     """
     Returns list of files from the upload table belonging to the user
     """
     return get_uploads_from_user(active_user, db)
 
+
 @router.post("/")
-def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_session)):
+def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_session)) -> None:
     """
     Uploads raw file (.xlsx) to storage and turns it into organized database tables 
     """
