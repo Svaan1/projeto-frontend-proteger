@@ -83,3 +83,7 @@ def create_forms_and_residents_from_list(upload: Upload, form_list: list, reside
             db.add(new_resident)
         
     db.flush()
+
+def get_uploads_from_user(user: User, db: Session):
+    uploads = db.query(Upload).where(Upload.user_id == user.id).all()
+    return uploads
