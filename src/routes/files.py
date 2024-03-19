@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, UploadFile
 from src.db import get_session
 from src.db.actions import *
 from src.security import manager
-from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType, InvalidPermissions
+from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType, InvalidPermissions, FileSizeExceeded
 from src.scripts.sheets import transform_file_data
 
 from src.models.file import UploadResponse
@@ -34,6 +34,9 @@ def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db
     if file.content_type not in ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]:
         raise InvalidFileType
 
+    if file.size > 5000000:
+        raise FileSizeExceeded
+    
     try:
         upload = create_upload(active_user, file.filename, db)
     except IntegrityError:
@@ -43,6 +46,7 @@ def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db
 
     create_forms_and_residents_from_list(upload, forms, residents, db)
 
+    shutil.os.makedirs("./src/static/uploads/", exist_ok=True)
     with open(f"./src/static/uploads/{file.filename}", "wb") as f:
             shutil.copyfileobj(file.file, f)
 

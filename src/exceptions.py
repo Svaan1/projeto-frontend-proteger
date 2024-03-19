@@ -32,3 +32,8 @@ InvalidFileType = HTTPException(
     status_code=400,
     detail="Invalid file type, only .xlsx files are allowed."
 )
+
+FileSizeExceeded = HTTPException(
+    status_code=413,
+    detail="File size exceeds the maximum allowed size (5 MB)."
+)
