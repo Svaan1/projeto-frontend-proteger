@@ -20,7 +20,7 @@ def get_user_files(active_user=Depends(manager), db=Depends(get_session)) -> lis
     return get_uploads_from_user(active_user, db)
 
 
-@router.post("/")
+@router.post("/", status_code=201)
 def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_session)) -> None:
     """
     Uploads raw file (.xlsx) to storage and turns it into organized database tables 
