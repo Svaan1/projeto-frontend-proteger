@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Double, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, Double, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
 from src.db import Base
@@ -21,7 +21,7 @@ class Upload(Base):
     id = Column(Integer, primary_key=True)
 
     filename = Column(String(100), unique=True)
-    date = Column(Date)
+    date = Column(DateTime)
 
     user_id = Column(Integer, ForeignKey("users.id"))
     forms = relationship('Form', backref='upload', cascade='all, delete-orphan')

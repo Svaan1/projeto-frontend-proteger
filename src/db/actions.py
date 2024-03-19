@@ -5,7 +5,7 @@ from src.db.models import User, Upload, Form, Resident
 from src.security import hash_password, manager
 from sqlalchemy.orm import Session
 
-from datetime import date
+from datetime import datetime
 
 def get_user_by_name(name: str, db: Session) -> Optional[User]:
     """
@@ -50,14 +50,14 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
     """
     Creates and commits a new upload object to the database
     Args:
-        user: the owner of the file
+        user: The owner of the file
         filename: The name of the created file
         db: The active db session
 
     Returns:
         The newly created upload.
     """
-    upload = Upload(filename=filename, date=date.today(), user=user)
+    upload = Upload(filename=filename, date=datetime.now(), user=user)
     db.add(upload)
     db.flush()
     return upload
@@ -67,8 +67,8 @@ def create_forms_and_residents_from_list(upload: Upload, form_list: list, reside
     Creates and commits new form and resident objects to the database based on input lists.
     Args:
         upload: Upload object 
-        form_list: list of dictionaries containing form data
-        resident_list: list of lists, each containing dictionaries representing resident data corresponding to forms
+        form_list: List of dictionaries containing form data
+        resident_list: List of lists, each containing dictionaries representing resident data corresponding to forms
         db: The active db session.
 
     Returns:
@@ -85,5 +85,15 @@ def create_forms_and_residents_from_list(upload: Upload, form_list: list, reside
     db.flush()
 
 def get_uploads_from_user(user: User, db: Session):
+    """
+    Retrieves all uploads associated with a specific user from the database.
+    
+    Args:
+        user: User object representing the owner of the uploads.
+        db: The active db session
+
+    Returns:
+        A list of Upload objects belonging to the specified user
+    """
     uploads = db.query(Upload).where(Upload.user_id == user.id).all()
     return uploads
