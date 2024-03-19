@@ -13,6 +13,8 @@ from sqlalchemy.exc import IntegrityError
 import shutil
 from pathlib import Path
 
+UPLOADS_DIRECTORY = "./src/static/uploads/"
+
 router = APIRouter(prefix="/files")
 
 @router.get("/", response_model=list[UploadResponse])
@@ -48,10 +50,11 @@ async def upload_file(file: UploadFile | None = None, active_user=Depends(manage
 
     file.file.seek(0)
 
-    shutil.os.makedirs("./src/static/uploads/", exist_ok=True)
-    with open(f"./src/static/uploads/{file.filename}", "wb") as f:
-            shutil.copyfileobj(file.file, f)
+    shutil.os.makedirs(UPLOADS_DIRECTORY, exist_ok=True)
+    with open(UPLOADS_DIRECTORY + file.filename, "wb") as f:
+        shutil.copyfileobj(file.file, f)
 
+    db.commit()
     return
     
 @router.delete("/{upload_id}", status_code=204)
@@ -66,7 +69,7 @@ def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_ses
     
     delete_upload_by_id(upload_id, db)
 
-    file_path = Path("src/static/uploads/" + upload.filename)
+    file_path = Path(UPLOADS_DIRECTORY + upload.filename)
 
     if file_path.exists():
         file_path.unlink()
