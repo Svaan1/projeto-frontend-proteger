@@ -1,7 +1,7 @@
 from typing import Optional
 
 from src.db import SessionLocal
-from src.db.models import User, Upload
+from src.db.models import User, Upload, Form, Resident
 from src.security import hash_password, manager
 from sqlalchemy.orm import Session
 
@@ -61,3 +61,15 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
     db.add(upload)
     db.flush()
     return upload
+
+def create_forms_and_residents_from_list(upload: Upload, form_list: list, resident_list: list, db: Session):
+
+    for index, form in enumerate(form_list):
+        new_form = Form(**form, upload=upload)
+        db.add(new_form)
+
+        for resident in resident_list[index]:
+            new_resident = Resident(form=new_form, **resident)
+            db.add(new_resident)
+        
+    db.flush()

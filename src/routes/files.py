@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, UploadFile
 
 from src.db import get_session
-from src.db.actions import create_upload
+from src.db.actions import create_upload, create_forms_and_residents_from_list
 from src.security import manager
 from src.exceptions import FileAlreadyExists
+from src.scripts.sheets import transform_file_data
 
 from sqlalchemy.exc import IntegrityError
 
@@ -25,6 +26,11 @@ def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_s
         upload = create_upload(active_user, file.filename, db)
     except IntegrityError:
         raise FileAlreadyExists
-    
+        
+    forms, residents = transform_file_data(file.file)
+
+    create_forms_and_residents_from_list(upload, forms, residents, db)
+
     db.commit()
-    pass
+    
+
