@@ -114,9 +114,7 @@ def get_upload_by_id(upload_id: int, db: Session) -> Upload:
     upload = db.query(Upload).where(Upload.id == upload_id).first()
     return upload
 
-def delete_upload_if_exists(upload_id: int, db: Session) -> None:
+def delete_upload_by_id(upload_id: int, db: Session) -> None:
     upload = get_upload_by_id(upload_id, db)
-
-    if upload:
-        db.delete(upload)
-        db.commit()
+    db.delete(upload)
+    db.flush()
