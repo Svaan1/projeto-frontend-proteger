@@ -62,8 +62,18 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
     db.flush()
     return upload
 
-def create_forms_and_residents_from_list(upload: Upload, form_list: list, resident_list: list, db: Session):
+def create_forms_and_residents_from_list(upload: Upload, form_list: list, resident_list: list, db: Session) -> None:
+    """
+    Creates and commits new form and resident objects to the database based on input lists.
+    Args:
+        upload: Upload object 
+        form_list: list of dictionaries containing form data
+        resident_list: list of lists, each containing dictionaries representing resident data corresponding to forms
+        db: The active db session.
 
+    Returns:
+        None
+    """
     for index, form in enumerate(form_list):
         new_form = Form(**form, upload=upload)
         db.add(new_form)
