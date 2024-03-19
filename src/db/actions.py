@@ -49,6 +49,7 @@ def create_user(name: str, password: str, age: int, email: str, db: Session) -> 
 def create_upload(user: User, filename: str, db: Session) -> Upload:
     """
     Creates and commits a new upload object to the database
+
     Args:
         user: The owner of the file
         filename: The name of the created file
@@ -65,6 +66,7 @@ def create_upload(user: User, filename: str, db: Session) -> Upload:
 def create_forms_and_residents_from_list(upload: Upload, form_list: list, resident_list: list, db: Session) -> None:
     """
     Creates and commits new form and resident objects to the database based on input lists.
+
     Args:
         upload: Upload object 
         form_list: List of dictionaries containing form data
@@ -84,7 +86,7 @@ def create_forms_and_residents_from_list(upload: Upload, form_list: list, reside
         
     db.flush()
 
-def get_uploads_from_user(user: User, db: Session):
+def get_uploads_from_user(user: User, db: Session) -> list[Upload]:
     """
     Retrieves all uploads associated with a specific user from the database.
     
@@ -97,3 +99,24 @@ def get_uploads_from_user(user: User, db: Session):
     """
     uploads = db.query(Upload).where(Upload.user_id == user.id).all()
     return uploads
+
+def get_upload_by_id(upload_id: int, db: Session) -> Upload:
+    """
+    Retrieves an upload from the database based on its ID.
+    
+    Args:
+        upload_id: The file id
+        db: The active db session.
+
+    Returns:
+        The Upload object with the specified ID, or None if not found.
+    """
+    upload = db.query(Upload).where(Upload.id == upload_id).first()
+    return upload
+
+def delete_upload_if_exists(upload_id: int, db: Session) -> None:
+    upload = get_upload_by_id(upload_id, db)
+
+    if upload:
+        db.delete(upload)
+        db.commit()

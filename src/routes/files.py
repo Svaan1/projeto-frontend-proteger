@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, UploadFile
 
 from src.db import get_session
-from src.db.actions import create_upload, create_forms_and_residents_from_list, get_uploads_from_user
+from src.db.actions import *
 from src.security import manager
-from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType
+from src.exceptions import FileAlreadyExists, MissingFile, InvalidFileType, InvalidPermissions
 from src.scripts.sheets import transform_file_data
 
 from src.models.file import UploadResponse
@@ -42,4 +42,14 @@ def upload_file(file: UploadFile | None = None, active_user=Depends(manager), db
 
     db.commit()
     
+@router.delete("/{upload_id}", status_code=204)
+def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_session)) -> None:
+    upload = get_upload_by_id(upload_id, db)
+
+    if upload.user_id != active_user.id:
+        raise InvalidPermissions
+    
+    delete_upload_if_exists(upload_id, db)
+
+    return
 
