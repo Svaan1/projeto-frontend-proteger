@@ -1,6 +1,7 @@
 import pandas
 
 from datetime import datetime
+import re
 
 TWO_DIGIT_YEAR_DATE_FORMAT = '%d/%m/%y'
 FOUR_DIGIT_YEAR_DATE_FORMAT = '%d/%m/%Y'
@@ -89,6 +90,19 @@ def get_form(row):
     if is_valid(ivee, int):
         current_form['ivee'] = ivee
     
+    # Get questions
+    field_pattern = r'^q\d{1,2}(?:[-\s]\d+)?(?: [A-C])?$'
+
+    field_list = row.index.to_list()
+    question_list = [field for field in field_list if re.match(field_pattern, field)]
+    formatted_question_list = [format_question(question) for question in question_list]
+
+    for index, question in enumerate(question_list):
+        formatted_question = formatted_question_list[index]
+        answer = row[question]
+        if is_valid(answer, str):
+            current_form[formatted_question] = answer
+            
     return current_form
 
 def get_residents(row):
@@ -159,4 +173,13 @@ def is_valid(value, instance=None):
         
     return True
 
+def format_question(question):
+    substitutions = {
+        "q": "question_",
+        " ": "_",
+        "-": "_"
+    }
+    for old_str, new_str in substitutions.items():
+        question = question.replace(old_str, new_str)
 
+    return question.lower()
