@@ -17,7 +17,18 @@ InvalidPermissions = HTTPException(
     detail="You do not have permission for this action."
 )
 
+
 FileAlreadyExists = HTTPException(
     status_code=409,
     detail="File with given name already exists."
+)
+
+MissingFile = HTTPException(
+    status_code=400,
+    detail="Required file is missing."
+)
+
+InvalidFileType = HTTPException(
+    status_code=400,
+    detail="Invalid file type, only .xlsx files are allowed."
 )
