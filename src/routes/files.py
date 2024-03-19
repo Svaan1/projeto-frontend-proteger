@@ -60,6 +60,9 @@ async def upload_file(file: UploadFile | None = None, active_user=Depends(manage
     
 @router.delete("/{upload_id}", status_code=204)
 def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_session)) -> None:
+    """
+    Deletes a file from the database and filesystem if the user has permission.
+    """
     upload = get_upload_by_id(upload_id, db)
 
     if not upload:
@@ -80,6 +83,9 @@ def delete_file(upload_id: int, active_user=Depends(manager), db=Depends(get_ses
 
 @router.get("/{upload_id}", status_code=200)
 def serve_file(upload_id: int,  active_user=Depends(manager), db=Depends(get_session)) -> FileResponse:
+    """
+    Serves a file for download if the user has permission.
+    """
     upload = get_upload_by_id(upload_id, db)
 
     if not upload:

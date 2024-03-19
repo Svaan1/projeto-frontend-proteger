@@ -102,8 +102,8 @@ def get_uploads_from_user(user: User, db: Session) -> list[Upload]:
 
 def get_upload_by_id(upload_id: int, db: Session) -> Upload:
     """
-    Retrieves an upload from the database based on its ID.
     
+    Retrieves an upload from the database based on its ID.
     Args:
         upload_id: The file id
         db: The active db session.
@@ -115,6 +115,15 @@ def get_upload_by_id(upload_id: int, db: Session) -> Upload:
     return upload
 
 def delete_upload_by_id(upload_id: int, db: Session) -> None:
+    """
+    Deletes an upload from the database based on its ID.
+    Args:
+        upload_id: The ID of the upload to be deleted.
+        db: The active db session.
+
+    Returns:
+        None
+    """
     upload = get_upload_by_id(upload_id, db)
     db.delete(upload)
     db.flush()
