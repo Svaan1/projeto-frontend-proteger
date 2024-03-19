@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, UploadFile
 
 from src.db import get_session
-from src.db.actions import create_upload, create_forms_and_residents_from_list
+from src.db.actions import create_upload, create_forms_and_residents_from_list, get_uploads_from_user
 from src.security import manager
 from src.exceptions import FileAlreadyExists
 from src.scripts.sheets import transform_file_data
@@ -15,7 +15,7 @@ def get_user_files(active_user=Depends(manager), db=Depends(get_session)):
     """
     Returns list of files from the upload table belonging to the user
     """
-    pass
+    return get_uploads_from_user(active_user, db)
 
 @router.post("/")
 def upload_file(file: UploadFile, active_user=Depends(manager), db=Depends(get_session)):
