@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import List
 from datetime import datetime
 
 class UploadBase(BaseModel):
@@ -10,5 +9,5 @@ class UploadBase(BaseModel):
 class UploadResponse(UploadBase):
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         exclude = ('user_id')
