@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar Tabela - Proteger Teresópolis</title>
+  <link rel="stylesheet" href="../Static/uploadStyle.css"/>
+  <link rel="icon" href="../static/other/unifeso.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="header">
+    <div class="clickables">
+      <div class="logo">
+        <img src="../Static/other/unifeso.png" alt="Unifeso">
+      </div>
+      <nav class="links">
+        <link class="home">
+          <a href="home.html">
+            Dashboard
+          </a>
+        </link>
+        <link class="upload">
+          <a href="upload.html">
+            Enviar Tabela
+          </a>
+        </link>
+        <button class="logout">
+          Sair
+        </button>
+      </nav>  
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="outline">
+        <form method="post" enctype="multipart/form-data" id="save-sheet-form">
+            <div class="textContainer">
+                <h1>Enviar Tabela</h1>
+                <p>Selecione tabelas para visualizar</p>
+            </div>
+            
+            <div class="dragzone" draggable="false" onclick="triggerFileInput()" ondragover="dragOverHandler">
+              <ion-icon name="cloud-upload-outline"></ion-icon>
+              <h1>Selecione uma ou arraste e solte aqui.</h1>
+              <p class="acceptedFiles">Arquivos aceitos: .XSLX</p>
+              <input type="file" name="file" id="file" class="form-control" required="true" onchange="return fileValidation()" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+          </div>
+                
+
+            <div class="buttons-area">
+                <span class="separator"></span>
+                  <div class="buttons">
+                      <button type="reset">Cancelar</button>
+                      <button type="submit">Enviar</button>
+                  </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+  <title> Adicionar Planilha </title>
+  <script>
+    function dragOverHandler(event) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'copy';
+      event.target.classList.add('drag-over');
+
+      fileValidation(event.dataTransfer.files);
+    }
+
+    function triggerFileInput() {
+      document.getElementById('file').click();
+    }
+
+    function fileValidation(files) {
+    var allowedExtensions = /(\.xlsx)$/i;
+
+    // Check if there's at least one file
+    if (files.length > 0) {
+        var fileName = files[0].name;
+        if (!allowedExtensions.exec(fileName)) {
+            alert('São aceitos apenas arquivos de planilhas. (.xlsx)');
+            return false;
+        }
+    }
+  }
+  </script>
+
+  <script>
+    function fileValidation() {
+      var fileInput = document.getElementById('file');
+      var filePath = fileInput.value;
+      var allowedExtensions = /(\.xlsx)$/i;
+          
+      if (!allowedExtensions.exec(filePath)) {
+        alert('São aceitos apenas arquivos de planilhas. (.xlsx)');
+        fileInput.value = '';
+        return false;
+      }            
+    }
+  </script>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+</body>
+</html>
