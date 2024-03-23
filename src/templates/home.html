@@ -6,23 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proteger Teresopólis</title>
-    <link rel="stylesheet" href="../Static/homeStyle.css" />
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/home.css') }}">
 </head>
 
 <body>
     <div class="header">
         <div class="logo">
-            <img src="../Static/other/unifeso.png" alt="Unifeso">
+            <img src="{{ url_for('static', path='images/unifeso.png') }}" alt="Unifeso">
         </div>
         <div class="menu-buttons">
           <nav class="links">
             <link class="home">
-              <a href="home.html">
+              <a>
                 Dashboard
               </a>
             </link>
             <link class="upload">
-              <a href="upload.html">
+              <a>
                 Enviar Tabela
               </a>
             </link>
