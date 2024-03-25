@@ -27,7 +27,7 @@ services:
     container_name: web
     volumes:
       - ./src/:/code/src
-      - .src/static/uploads:/code/src/static/uploads
+      - ./src/static/uploads/:/code/src/static/uploads
     ports:
       - 8080:8080
     depends_on:
