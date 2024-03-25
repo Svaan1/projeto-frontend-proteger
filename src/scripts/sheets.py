@@ -100,8 +100,14 @@ def get_form(row):
     for index, question in enumerate(question_list):
         formatted_question = formatted_question_list[index]
         answer = row[question]
-        if is_valid(answer, str):
+        
+        if formatted_question in ['question_10', 'question_11']:
+            if is_valid(answer, int):
+                current_form[formatted_question] = answer
+                
+        elif is_valid(answer, str):
             current_form[formatted_question] = answer
+            
             
     return current_form
 
@@ -121,7 +127,7 @@ def get_residents(row):
 
     education = row['escolaridade']
     if is_valid(education, str):
-        main_resident['education'] = education
+        main_resident['education'] = education.upper()
         
     residents.append(main_resident)
 
