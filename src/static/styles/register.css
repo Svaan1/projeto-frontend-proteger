@@ -1,5 +1,5 @@
 *{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -10,40 +10,28 @@ body {
     align-items: center;
     background-size: cover;
     justify-content: center;
-    animation: moveBackground 70s linear infinite;
-    background-image: url(../static/other/grid.png);
-}
-
-@keyframes moveBackground {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100vw 100vh; 
-    }
 }
 
 img {
-    position: absolute;
     width: 80px;
-    filter: drop-shadow(6px 6px rgba(0,0,0,0.7));
+    position: absolute;
 }
 
 .signup {
-    background-color: whitesmoke;
     padding: 20px;
-    min-width: 250px;
-    max-width: 80vw;
     margin: 0 auto;
+    max-width: 80vw;
     overflow: hidden;
-    box-shadow: 8px 10px rgba(0,136,126, 0.5);
+    min-width: 250px;
+    border: 1px solid #ccc;
+    background-color: whitesmoke;
 }
 
 
 form {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }
 
 .signup form h1 {
@@ -64,10 +52,10 @@ input[type="email"],
 input[type="password"],
 input[type="passwordConfirm"] {
     width: 100%;
-    margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 15px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
 }
 
 input[type="email"]:focus,
@@ -88,14 +76,13 @@ button {
     margin-top: 20px;
     color: #ffffff;
     margin: 10px auto;
-    background: #808080;
+    background: #000000;
     justify-content: center;
     transition: background 0.5s ease, box-shadow 0.5s ease;
 }
 
 button:hover {
-    background: rgba(0,136,126, 0.5);
-    box-shadow: 0 0 10px rgba(0,136,126, 0.5);
+    box-shadow: 0 0 10px rgb(56,56,56);
 }
 
 p{
@@ -110,22 +97,5 @@ p a {
 }
 
 a:hover {
-    cursor: pointer;
     color: rgb(56, 56, 56);
-}
-
-.registerBtn{
-    color: black;
-    background: transparent;
-    border: 1px solid rgba(148, 148, 148, 0.8);
-    box-shadow: 8px 10px rgba(0,136,126, 0.5);
-}
-
-.registerBtn:hover{
-    background: transparent;
-}
-
-.resetPswd{
-    font-size: 15px;
-    margin-bottom: 0;
 }
