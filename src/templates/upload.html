@@ -4,37 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enviar Tabela - Proteger Teresópolis</title>
+  
+  <link rel="stylesheet" href="{{ url_for('static', path='styles/globals.css') }}"/>
   <link rel="stylesheet" href="{{ url_for('static', path='styles/upload.css') }}"/>
-  <link rel="icon" href="{{ url_for('static', path='icons/unifeso-black.ico') }}" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
+  <link rel="icon" href="{{ url_for('static', path='icons/unifeso-black.ico') }}" type="image/x-icon">
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
+  
+  <script src="{{ url_for('static', path='js/user.js') }}"></script>
+  <script>
+    fetchUser();
+  </script>
+</head>
+
+<body>
   <script>
     function dragOverHandler(event) {
       event.preventDefault();
       event.dataTransfer.dropEffect = 'copy';
       event.target.classList.add('drag-over');
 
-      fileValidation(event.dataTransfer.files);
+      fileValidation();
     }
 
     function triggerFileInput() {
       document.getElementById('file').click();
     }
 
-    function fileValidation(files) {
-    var allowedExtensions = /(\.xlsx)$/i;
-
-    if (files.length > 0) {
-        var fileName = files[0].name;
-        if (!allowedExtensions.exec(fileName)) {
-            alert('São aceitos apenas arquivos de planilhas. (.xlsx)');
-            return false;
-        }
-    }
-  }
-  </script>
-
-  <script>
     function fileValidation() {
       var fileInput = document.getElementById('file');
       var filePath = fileInput.value;
@@ -47,30 +45,23 @@
       }            
     }
   </script>
-  <script
-    type="module"
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-  ></script>
-  <script
-    nomodule
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-  ></script>
-</head>
+  
+    {% include 'header.html' %}
 
-<body>
     <div class="outline">
         <form method="post" enctype="multipart/form-data" id="save-sheet-form">
             <div class="textContainer">
                 <h1>Enviar Arquivo</h1>
             </div>
             
-            <div class="dragzone" draggable="false" onclick="triggerFileInput()" ondragover="dragOverHandler">
+            <div class="dragzone" draggable="false" onclick="triggerFileInput()" ondragover="dragOverHandler()">
               <ion-icon name="cloud-upload-outline"></ion-icon>
               <h1>Selecione um arquivo ou arraste e solte aqui.</h1>
               <p class="acceptedFiles">Arquivos aceitos: .xlsx</p>
               <input type="file" name="file" id="file" class="form-control" required="true" onchange="return fileValidation()" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
             </div>
         </form>
-</div>
+    </div>
 </body>
+
 </html>

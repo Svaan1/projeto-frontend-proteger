@@ -6,38 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proteger Teresopólis</title>
-    <link rel="stylesheet" href="../static/styles/home.css">
-    <link rel="icon" href="../static/icons/unifeso-black.ico" type="image/x-icon">
+
+    <script src="{{ url_for('static', path='js/user.js') }}"></script>
+    <script>
+      fetchUser();
+    </script>
 </head>
 
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="{{ url_for('static', path='images/unifeso.png') }}" alt="Unifeso">
-        </div>
-        <div class="menu-buttons">
-          <nav class="links">
-            <link class="home">
-              <a>
-                Dashboard
-              </a>
-            </link>
-            <link class="upload">
-              <a>
-                Enviar Tabela
-              </a>
-            </link>
-            <button class="logout">
-              Sair
-            </button>
-          </nav>
-        </div>
-
-    </div>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  {% include 'header.html' %}
 </body>
+
 </html>
-<!-- {{ url_for('static', path='styles/home.css') }} -->
-<!-- {{ url_for('static', path='icons/unifeso-black.ico') }} -->

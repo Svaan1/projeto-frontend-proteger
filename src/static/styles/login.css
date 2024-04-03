@@ -1,7 +1,3 @@
-*{
-    font-family: 'Roboto', sans-serif;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -47,7 +43,7 @@ label {
     display: none;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"] {
     width: 100%;
     margin-bottom: 15px;
@@ -56,7 +52,7 @@ input[type="password"] {
     border: 1px solid #ccc;
 }
 
-input[type="email"]:focus,
+input[type="text"]:focus,
 input[type="password"]:focus{
     outline: 1px solid black;
 }
