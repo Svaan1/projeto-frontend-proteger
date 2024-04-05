@@ -5,6 +5,7 @@ from fastapi.staticfiles import StaticFiles
 
 from src.routes.auth import router as auth_router
 from src.routes.user import router as user_router
+from src.routes.files import router as files_router
 from src.db import create_tables
 
 create_tables()
@@ -35,3 +36,4 @@ async def upload(request: Request):
 
 app.include_router(auth_router)
 app.include_router(user_router)
+app.include_router(files_router)

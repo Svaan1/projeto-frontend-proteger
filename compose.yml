@@ -21,16 +21,22 @@ services:
       - POSTGRES_USER=${DATABASE_USER}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DATABASE_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
     container_name: web
     volumes:
       - ./src/:/code/src
+      - ./src/static/uploads/:/code/src/static/uploads
     ports:
       - 8080:8080
     depends_on:
-      - postgres
-      - grafana
+      postgres:
+        condition: service_healthy
     env_file:
       - .env

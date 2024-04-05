@@ -9,6 +9,7 @@
 DATABASE_USER=user
 DATABASE_PASSWORD=password
 DATABASE_NAME=name
+DATABASE_HOST=host (postgres if in a container)
 ```
 
 2. Certifique-se de ter o Docker e o Docker Compose instalados.
