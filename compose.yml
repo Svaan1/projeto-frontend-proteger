@@ -27,12 +27,12 @@ services:
       timeout: 5s
       retries: 5
 
-  web:
-    build: .
-    container_name: web
+  backend:
+    build: ./backend
+    container_name: backend
     volumes:
-      - ./src/:/code/src
-      - ./src/static/uploads/:/code/src/static/uploads
+      - ./backend/src/:/backend/src
+      - ./backend/src/static/uploads/:/backend/src/static/uploads
     ports:
       - 8080:8080
     depends_on:
