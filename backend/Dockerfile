@@ -2,12 +2,12 @@ FROM python:3.11.4
 
 WORKDIR /backend
 
-COPY ./requirements.txt /backend/requirements.txt
+COPY ./requirements.txt ./requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
-COPY ./src backend/src
+COPY ./src ./src
 
 EXPOSE 8080
 
-CMD ["uvicorn", "backend.src.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
