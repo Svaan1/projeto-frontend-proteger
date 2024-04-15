@@ -3,14 +3,7 @@
 ## Uso
 
 1. Crie um arquivo .env na raiz do projeto.
-   Defina as variáveis de ambiente necessárias, seguindo o exemplo:
-
-```yaml
-DATABASE_USER=user
-DATABASE_PASSWORD=password
-DATABASE_NAME=name
-DATABASE_HOST=host (postgres if in a container)
-```
+   Defina as variáveis de ambiente necessárias, seguindo o exemplo do arquivo `.env.default`.
 
 2. Certifique-se de ter o Docker e o Docker Compose instalados.
    No terminal, navegue até o diretório raiz do projeto.
@@ -20,8 +13,9 @@ DATABASE_HOST=host (postgres if in a container)
 docker-compose up
 ```
 
-Isso iniciará as seguintes aplicações
+Isso iniciará os seguintes serviços:
 
-- Aplicação Web - Porta 8080
 - Grafana - Porta 3000
 - PostgreSQL - Porta 5432
+- Backend - Porta 8080
+- Frontend - Porta 80

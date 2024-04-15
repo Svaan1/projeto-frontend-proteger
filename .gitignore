@@ -18,5 +18,4 @@ vite.config.ts.timestamp-*
 # IDEs
 .idea
 .env
-.env.*
 .venv

@@ -4,7 +4,7 @@ services:
     image: grafana/grafana-oss
     container_name: grafana
     ports:
-      - 3000:3000
+      - ${GRAFANA_PORT}:3000
     volumes:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./grafana/provisioning/:/etc/grafana/provisioning/
@@ -16,7 +16,7 @@ services:
     image: postgres
     container_name: postgres
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:5432
     environment:
       - POSTGRES_USER=${DATABASE_USER}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
@@ -34,7 +34,7 @@ services:
       - ./backend/src/:/backend/src
       - ./backend/src/static/uploads/:/backend/src/static/uploads
     ports:
-      - 8080:8080
+      - ${BACKEND_PORT}:8080
     depends_on:
       postgres:
         condition: service_healthy
@@ -45,6 +45,6 @@ services:
     build: ./frontend
     container_name: frontend
     ports: 
-      - 80:3000
+      - ${FRONTEND_PORT}:3000
     env_file:
       .env
