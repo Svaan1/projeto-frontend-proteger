@@ -23,8 +23,7 @@ def register(user: UserCreate, db=Depends(get_session)) -> Token:
     Registers a new user
     """
     try:
-        user = create_user(user.username, user.password,
-                           user.age, user.email, db)
+        user = create_user(user.username, user.password, user.email, db)
         token = manager.create_access_token(data={'sub': user.username})
         return Token(access_token=token, token_type='Bearer')
     except IntegrityError:

@@ -28,7 +28,7 @@ def get_user(name: str):
         return get_user_by_name(name, db)
 
 
-def create_user(name: str, password: str, age: int, email: str, db: Session) -> User:
+def create_user(name: str, password: str, email: str, db: Session) -> User:
     """
     Creates and commits a new user object to the database
 
@@ -41,7 +41,7 @@ def create_user(name: str, password: str, age: int, email: str, db: Session) -> 
         The newly created user.
     """
     hashed_pw = hash_password(password)
-    user = User(username=name, password=hashed_pw, age=age, email=email)
+    user = User(username=name, password=hashed_pw, email=email)
     db.add(user)
     db.commit()
     return user

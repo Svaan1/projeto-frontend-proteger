@@ -11,4 +11,4 @@ router = APIRouter(prefix="/user")
 
 @router.get("/")
 def read_user(active_user=Depends(manager)) -> UserResponse:
-    return UserResponse.model_validate(active_user)
+    return active_user

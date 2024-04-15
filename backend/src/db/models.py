@@ -9,7 +9,6 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String(32), unique=True)
-    age = Column(Integer)
     email = Column(String(32), unique=True)
     password = Column(String(80))
 
