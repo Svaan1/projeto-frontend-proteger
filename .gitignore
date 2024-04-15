@@ -1,5 +1,22 @@
-.venv
-.env
+
+# FastAPI
 __pycache__/
 *.xlsx
+
+# SvelteKit
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+!.env.example
+.vercel
+.output
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# IDEs
 .idea
+.env
+.env.*
+.venv

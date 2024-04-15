@@ -40,3 +40,11 @@ services:
         condition: service_healthy
     env_file:
       - .env
+      
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports: 
+      - 80:3000
+    env_file:
+      .env
