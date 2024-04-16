@@ -1,11 +1,17 @@
 <script>
-  import logoImage from "$lib/assets/unifeso.png"
+  import logoImage from "$lib/assets/unifeso.png";
+
+  export let form;
 </script>
+
+{#if form?.success === false}
+  {form?.message}
+{/if}
 
 <div class="container">
   <div class="login">
-    <form id="loginForm">
-      <img src={logoImage} title="Unifeso" alt="Logo da Unifeso"/>
+    <form method="POST" id="loginForm">
+      <img src={logoImage} title="Unifeso" alt="Logo da Unifeso" />
       <h1>Login</h1>
       <p>Faça o login na sua conta.</p>
       <label for="chk" aria-hidden="true">Login</label>
@@ -27,7 +33,7 @@
         >Login</button
       >
       <p class="resetPswd">
-        Esqueceu a senha? <a>Clique aqui para resetar</a>.
+        Esqueceu a senha? <a href="#">Clique aqui para resetar</a>.
       </p>
       <button class="registerBtn" type="button">Registrar</button>
     </form>
@@ -36,7 +42,7 @@
 
 <style>
   .container {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 
     margin: 0;
     padding: 0;
@@ -105,7 +111,6 @@
     display: block;
     cursor: pointer;
     font-weight: 700;
-    margin-top: 20px;
     color: #ffffff;
     margin: 10px auto;
     background: #000000;
@@ -124,7 +129,7 @@
   }
 
   p a {
-    color: gray;
+    color: rgb(128, 128, 128);
     margin-top: 10px;
     text-align: center;
     text-decoration: none;

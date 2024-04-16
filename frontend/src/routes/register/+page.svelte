@@ -1,17 +1,24 @@
 <script>
     import logoUnifeso from "$lib/assets/unifeso.png"
+
+    export let form;
 </script>
+
+{#if form?.success === false}
+    {form?.message}
+{/if}
+
 
 <div class="container">
     <div class="signup">
-        <form>
+        <form method="POST">
             <img src={logoUnifeso} alt="Logo da Unifeso">
             <h1>Registro</h1>
             <p>Já tem conta? Você pode <a href="login.html">logar aqui</a>.</p>
             <input type="text" id="username" name="username" placeholder="Usuário" required="required" title="Coloque o seu nome de usuário">
             <input type="email" id="email" name="email" placeholder="Email" required="required" title="Coloque o seu email">
-            <input type="password" id="password" name="pswd" placeholder="Senha" required="required" title="Coloque uma senha">
-            <input type="password" id="passwordConfirm" name="pswdConfirm" placeholder="Confirmar Senha" required="required" title="Confirme a sua senha">
+            <input type="password" id="password" name="password" placeholder="Senha" required="required" title="Coloque uma senha">
+            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirmar Senha" required="required" title="Confirme a sua senha">
             <button type="submit" id="btnSubmit">Confirmar</button>
         </form>
     </div>
