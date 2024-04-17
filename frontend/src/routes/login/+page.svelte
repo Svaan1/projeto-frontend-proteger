@@ -1,4 +1,5 @@
 <script>
+  import {goto} from "$app/navigation";
   import logoImage from "$lib/assets/unifeso.png";
 
   export let form;
@@ -35,7 +36,7 @@
       <p class="resetPswd">
         Esqueceu a senha? <a href="#">Clique aqui para resetar</a>.
       </p>
-      <button class="registerBtn" type="button">Registrar</button>
+      <button class="registerBtn" type="button" on:click={() => goto("/register")}>Registrar</button>
     </form>
   </div>
 </div>

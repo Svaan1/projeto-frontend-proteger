@@ -14,7 +14,7 @@
         <form method="POST">
             <img src={logoUnifeso} alt="Logo da Unifeso">
             <h1>Registro</h1>
-            <p>Já tem conta? Você pode <a href="login.html">logar aqui</a>.</p>
+            <p>Já tem conta? Você pode <a href="/login">logar aqui</a>.</p>
             <input type="text" id="username" name="username" placeholder="Usuário" required="required" title="Coloque o seu nome de usuário">
             <input type="email" id="email" name="email" placeholder="Email" required="required" title="Coloque o seu email">
             <input type="password" id="password" name="password" placeholder="Senha" required="required" title="Coloque uma senha">

@@ -7,7 +7,13 @@ export async function load({ cookies }) {
     const accessToken = cookies.get("accessToken");
 
     if (accessToken) {
-        const user = await getUser(accessToken);
+        let user;
+        try {
+            user = await getUser(accessToken);
+        } catch {
+            cookies.delete("/accessToken", { path: "/" });
+            return
+        }
 
         if (user.ok) {
             redirect(302, "/dashboard");
@@ -23,7 +29,13 @@ export const actions = {
     default: async ({ cookies, request }) => {
         const formData = await request.formData();
 
-        const response = await login(formData);
+        let response;
+        try {
+            const response = await login(formData);
+        } catch {
+            return { success: false, message: "Serviço Indisponível" }
+        }
+
         const data = await response.json();
 
         if (response.ok) {
