@@ -1,13 +1,13 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI
 
 from src.routes.auth import router as auth_router
 from src.routes.user import router as user_router
 from src.routes.files import router as files_router
 from src.db import create_tables
-
-from dotenv import load_dotenv
-
-load_dotenv()
 
 create_tables()
 app = FastAPI()
