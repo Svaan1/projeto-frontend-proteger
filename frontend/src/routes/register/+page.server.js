@@ -7,7 +7,13 @@ export async function load({ cookies }) {
     const accessToken = cookies.get("accessToken");
 
     if (accessToken) {
-        const user = await getUser(accessToken);
+        let user;
+        try {
+            user = await getUser(accessToken);
+        } catch {
+            cookies.delete("/accessToken", { path: "/" });
+            return
+        }
 
         if (user.ok) {
             redirect(302, "/dashboard");
