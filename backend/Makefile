@@ -1,4 +1,6 @@
+include ../.env
+
 run:
-	uvicorn --port 8080 src.main:app
+	uvicorn ${BACKEND_PORT} src.main:app
 dev_server:
-	uvicorn --host localhost --port 8000 src.main:app --reload
+	uvicorn --host localhost --port ${BACKEND_PORT} src.main:app --reload
