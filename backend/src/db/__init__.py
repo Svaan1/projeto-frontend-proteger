@@ -8,7 +8,8 @@ url_object = URL.create(
     host=getenv('DATABASE_HOST'),
     username=getenv('DATABASE_USER'),
     password=getenv('DATABASE_PASSWORD'),
-    database=getenv('DATABASE_NAME')
+    database=getenv('DATABASE_NAME'),
+    port=getenv('POSTGRES_PORT')
 )
 engine = create_engine(url_object)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

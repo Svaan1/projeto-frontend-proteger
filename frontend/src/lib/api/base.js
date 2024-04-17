@@ -1,6 +1,10 @@
-const backendUrl = "http://127.0.0.1:8000"
+import { env } from "$env/dynamic/private";
+
+const backendHost = env.BACKEND_HOST;
+const backendPort = env.BACKEND_PORT;
+
+const backendUrl = `${backendHost}:${backendPort}`;
 
 export async function makeRequest(endpoint, options) {
     return await fetch(backendUrl + endpoint, options)
 }
-
