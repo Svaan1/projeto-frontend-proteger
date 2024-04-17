@@ -31,7 +31,7 @@ export const actions = {
 
         let response;
         try {
-            const response = await login(formData);
+            response = await login(formData);
         } catch {
             return { success: false, message: "Serviço Indisponível" }
         }
