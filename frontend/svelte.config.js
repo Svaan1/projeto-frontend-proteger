@@ -5,6 +5,11 @@ import adapter from "@sveltejs/adapter-node";
 const config = {
   kit: {
     adapter: adapter(),
+    csp: {
+      directives: {
+        'script-src': ['self']
+      }
+    },
     csrf: {
       checkOrigin: false
     },
