@@ -8,7 +8,8 @@
 
     import * as Tooltip from "$lib/components/ui/tooltip";
     import { Separator } from "$lib/components/ui/separator"
-    import {writable} from "svelte/store";
+
+    import DashboardSettingsAlertDialog from "$lib/components/DashboardSettingsAlertDialog.svelte";
 
     import {currentView} from "../../stores.js";
 </script>
@@ -72,20 +73,20 @@
             </Tooltip.Root>
         </nav>
         <nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
-            <Tooltip.Root>
-                <Tooltip.Trigger asChild let:builder>
-                    <button
-                        on:click={() => currentView.set("settings")}
-                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        use:builder.action
-                        {...builder}
-                    >
-                        <Settings class="h-5 w-5" />
-                        <span class="sr-only">Settings</span>
-                    </button>
-                </Tooltip.Trigger>
-                <Tooltip.Content side="right">Configurações</Tooltip.Content>
-            </Tooltip.Root>
+            <DashboardSettingsAlertDialog>
+                <Tooltip.Root>
+                    <Tooltip.Trigger asChild let:builder>
+                        <button
+                                class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                                use:builder.action
+                                {...builder}
+                        >
+                            <Settings class="h-5 w-5" />
+                            <span class="sr-only">Settings</span>
+                        </button>
+                    </Tooltip.Trigger>
+                </Tooltip.Root>
+            </DashboardSettingsAlertDialog>
         </nav>
     </aside>
     <main class="flex flex-col h-screen sm:gap-4 sm:py-4 sm:pl-14 justify-center items-center">
