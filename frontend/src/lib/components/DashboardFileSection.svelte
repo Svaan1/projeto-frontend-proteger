@@ -1,9 +1,12 @@
 <script>
+    import { env } from "$env/dynamic/private";
     export let data;
 
     async function uploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
+        const backendHost = env.BACKEND_HOST
+        const backendPort = env.BACKEND_PORT
 
         if (!file) {
             alert("Please select a file to upload");
@@ -15,7 +18,7 @@
 
         let response;
         try {
-            response = await fetch("http://localhost:8080/files", {
+            response = await fetch(`${backendHost}:${backendPort}/files`, {
                 method: "POST",
                 body: formData,
                 headers: {
