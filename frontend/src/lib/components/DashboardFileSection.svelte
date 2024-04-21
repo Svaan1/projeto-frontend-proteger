@@ -1,5 +1,7 @@
 <script>
     export let data;
+    import { Button } from "$lib/components/ui/button" 
+    import DashboardFileTable from "./DashboardFileTable.svelte";
 
     async function uploadFile() {
         const fileInput = document.getElementById("fileInput");
@@ -26,25 +28,54 @@
             alert("An error occurred during upload. Please try again.");
         }
 
-        const responseData = await response.json();
-
-        alert(JSON.stringify(responseData));
-
-        // TODO: stylize error and success message (if 201 success message then remove file from input)
-        // TODO: also update files list if successful
+        if (response.status === 201) {
+            fileInput.value = "";
+            location.reload();
+            // não consegui trocar a currentView para files, mas deveria ser feito
+        }
+        else {
+            alert("Ocorreu um erro!"); // usar o Alert do shadcn eventualmente
+        }
     }
 </script>
 
-<div id="fileUpload">
-    <input type="file" name="file" id="fileInput">
-    <button class="btn btn-blue" on:click={uploadFile}>inhtml</button>
+<div class="container">
+    <div id="fileUpload">
+        <input type="file" name="file" id="fileInput">
+        <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
+    </div>
+    <div id="fileTable">
+        <DashboardFileTable data={data.files} />
+    </div>
 </div>
 
-<div class="fileList">
-    {#each data.files as file (file.id)}
-        <div class="file">
-            {file.filename}
-            {file.datetime}
-        </div>
-    {/each}
-</div>
+<style>
+    #fileUpload {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    #fileTable {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        width: 75%;
+        height: 75%;
+    }
+    
+    #fileInput, .uploadButton {
+        margin: 20px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+
