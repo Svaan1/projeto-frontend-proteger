@@ -57,60 +57,60 @@
     export let data;
 </script>
 
-<<<<<<< HEAD
-{#if $currentView === "graphs"}
-    graphs
-{:else if $currentView === "files"}
-    files
-{:else if $currentView === "users"}
-    users
-{:else if $currentView === "settings"}
+<DashboardLayout>
+    {#if $currentView === "graphs"}
+        graphs
+    {:else if $currentView === "files"}
+        <DashboardFileSection data={data} />
+    {:else if $currentView === "users"}
+        users
+    {:else if $currentView === "settings"}
 
-    <div class="icon-leave">
-        <LogOut class="h-5 w-5"/>
-        <span class="icon-text">
-            <p>Sair</p>
-        </span>
-    </div>
-
-    <div class="icon-toggle">
-        <button class="icons" on:click={toggleIcon}>
-            {#if isSunVisible && visible}
-                <Sun class="h-5 w-5" />
-            {:else}
-                <Moon class="h-5 w-5" />
-            {/if}
-        </button>
-    </div>
-
-    <div class="board">
-        <input
-            class="new-todo"
-            placeholder="what needs to be done?"
-            on:keydown={(event) => event.key === 'Enter' && add(event.target)}/>
-        <div class="left">
-            <h2>todo</h2>
-            {#each todos.filter((t) => !t.done) as todo (todo.id)}
-                <label in:receive={{ key: todo.id }} out:send={{ key: todo.id }} animate:flip>
-                    <input type="checkbox" bind:checked={todo.done} />
-                    {todo.description}
-                    <button on:click={() => remove(todo)}>x</button>
-                </label>
-            {/each}
+        <div class="icon-leave">
+            <LogOut class="h-5 w-5"/>
+            <span class="icon-text">
+                <p>Sair</p>
+            </span>
         </div>
-        <div class="right">
-            <h2>done</h2>
-            {#each todos.filter((t) => t.done) as todo (todo.id)}
-                <label in:receive={{ key: todo.id }} out:send={{ key: todo.id }} animate:flip>
-                    <input type="checkbox" bind:checked={todo.done} />
-                    {todo.description}
-                    <button on:click={() => remove(todo)}>x</button>
-                </label>
-            {/each}
-        </div>
-    </div>
-{/if}
 
+        <div class="icon-toggle">
+            <button class="icons" on:click={toggleIcon}>
+                {#if isSunVisible && visible}
+                    <Sun class="h-5 w-5" />
+                {:else}
+                    <Moon class="h-5 w-5" />
+                {/if}
+            </button>
+        </div>
+
+        <div class="board">
+            <input
+                class="new-todo"
+                placeholder="what needs to be done?"
+                on:keydown={(event) => event.key === 'Enter' && add(event.target)}/>
+            <div class="left">
+                <h2>todo</h2>
+                {#each todos.filter((t) => !t.done) as todo (todo.id)}
+                    <label in:receive={{ key: todo.id }} out:send={{ key: todo.id }} animate:flip>
+                        <input type="checkbox" bind:checked={todo.done} />
+                        {todo.description}
+                        <button on:click={() => remove(todo)}>x</button>
+                    </label>
+                {/each}
+            </div>
+            <div class="right">
+                <h2>done</h2>
+                {#each todos.filter((t) => t.done) as todo (todo.id)}
+                    <label in:receive={{ key: todo.id }} out:send={{ key: todo.id }} animate:flip>
+                        <input type="checkbox" bind:checked={todo.done} />
+                        {todo.description}
+                        <button on:click={() => remove(todo)}>x</button>
+                    </label>
+                {/each}
+            </div>
+        </div>
+    {/if}
+</DashboardLayout>
 <!-- style -->
 <style>
 
@@ -245,15 +245,3 @@
         }
     }
 </style>
-=======
-
-<DashboardLayout>
-    {#if $currentView === "graphs"}
-        graphs
-    {:else if $currentView === "files"}
-        <DashboardFileSection data={data} />
-    {:else if $currentView === "users"}
-        users
-    {/if}
-</DashboardLayout>
->>>>>>> origin/svelte
