@@ -48,7 +48,7 @@ export const actions = {
             return
         }
 
-        return { success: false, message: data.detail }
+        return { success: false, message: data.detail, }
 
     }
 };
