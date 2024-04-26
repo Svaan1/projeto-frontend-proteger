@@ -51,8 +51,13 @@
 		todos = todos.filter((t) => t !== todo);
 	}
 
+    import DashboardLayout from "$lib/components/DashboardLayout.svelte";
+    import DashboardFileSection from "$lib/components/DashboardFileSection.svelte";
+
+    export let data;
 </script>
 
+<<<<<<< HEAD
 {#if $currentView === "graphs"}
     graphs
 {:else if $currentView === "files"}
@@ -240,3 +245,15 @@
         }
     }
 </style>
+=======
+
+<DashboardLayout>
+    {#if $currentView === "graphs"}
+        graphs
+    {:else if $currentView === "files"}
+        <DashboardFileSection data={data} />
+    {:else if $currentView === "users"}
+        users
+    {/if}
+</DashboardLayout>
+>>>>>>> origin/svelte

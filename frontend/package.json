@@ -22,7 +22,7 @@
   "type": "module",
   "dependencies": {
     "@sveltejs/adapter-node": "^5.0.1",
-    "bits-ui": "^0.21.3",
+    "bits-ui": "^0.21.4",
     "clsx": "^2.1.0",
     "lucide-svelte": "^0.368.0",
     "tailwind-merge": "^2.2.2",
