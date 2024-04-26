@@ -26,10 +26,9 @@
 
 <style>
     .container {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
+        font-weight: normal;
 
-        margin: 0;
-        padding: 0;
         height: 100vh;
         display: flex;
         align-items: center;
@@ -42,37 +41,39 @@
         position: absolute;
     }
 
-    .signup {
-        padding: 20px;
-        margin: 0 auto;
-        max-width: 80vw;
-        overflow: hidden;
-        min-width: 250px;
-        border: 1px solid #ccc;
-        background-color: whitesmoke;
-    }
-
-
     form {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
 
-    .signup form h1 {
-        cursor: default;
-        margin-top: 80px;
-        margin-bottom: 0;
+    .signup {
+        padding: 40px; /* Increase padding */
+        max-width: 90vw; /* Increase max-width */
+        min-width: 250px;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: whitesmoke;
     }
 
-    .signup form p{
+    .signup form{
         cursor: default;
+    }
+
+    .signup form h1 {
+        font-weight: bold;
+        font-size: 2em;
+        margin-top: 70px;
+    }
+
+    .signup form p {
+        margin-bottom: 10px;
     }
 
     input[type="text"],
     input[type="email"],
     input[type="password"] {
-        width: 100%;
+        width: 300px;
         padding: 10px;
         margin-bottom: 15px;
         box-sizing: border-box;
@@ -84,39 +85,44 @@
     input[type="password"]:focus{
         outline: 1px solid black;
     }
+    
 
     button {
-        width: 100%;
-        border: none;
-        height: 40px;
-        outline: none;
-        font-size: 1em;
-        display: block;
-        cursor: pointer;
-        font-weight: 700;
-        color: #ffffff;
-        margin: 10px auto;
-        background: #000000;
-        justify-content: center;
-        transition: background 0.5s ease, box-shadow 0.5s ease;
-    }
+    width: 100%;
+    border: none;
+    height: 40px;
+    outline: none;
+    font-size: 1em;
+    display: block;
+    cursor: pointer;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 10px auto;
+    background: #000000;
+    justify-content: center;
+    transition:
+      background 0.5s ease,
+      box-shadow 0.5s ease;
+  }
 
-    button:hover {
-        box-shadow: 0 0 10px rgb(56,56,56);
-    }
+  button:hover {
+    box-shadow: 0 0 10px rgb(56, 56, 56);
+  }
 
-    p{
-        margin-top: 5px;
-    }
+  p {
+    margin-top: 5px;
+  }
 
-    p a {
-        color: rgb(128, 128, 128);
-        text-align: center;
-        margin-top: 10px;
-        text-decoration: underline;
-    }
+  p a {
+    color: rgb(128, 128, 128);
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+  }
 
-    a:hover {
-        color: rgb(56, 56, 56);
-    }
+  a:hover {
+    color: rgb(56, 56, 56);
+    text-decoration: underline;
+  }
+
 </style>

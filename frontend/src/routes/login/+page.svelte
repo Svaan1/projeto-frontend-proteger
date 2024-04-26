@@ -6,7 +6,7 @@
 </script>
 
 {#if form?.success === false}
-  {form?.message}
+  {form.message} 
 {/if}
 
 <div class="container">
@@ -34,19 +34,19 @@
         >Login</button
       >
       <p class="resetPswd">
-        Esqueceu a senha? <a href="#">Clique aqui para resetar</a>.
+        <!-- svelte-ignore a11y-invalid-attribute -->
+        Esqueceu a senha? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Clique aqui para resetar</a>.
       </p>
       <button class="registerBtn" type="button" on:click={() => goto("/register")}>Registrar</button>
     </form>
   </div>
 </div>
 
+<!-- styling -->
 <style>
   .container {
-    font-family: "Roboto", sans-serif;
-
-    margin: 0;
-    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    
     height: 100vh;
     display: flex;
     align-items: center;
@@ -54,19 +54,10 @@
     justify-content: center;
   }
 
+  
   img {
     width: 80px;
     position: absolute;
-  }
-
-  .login {
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 80vw;
-    min-width: 250px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: whitesmoke;
   }
 
   form {
@@ -75,14 +66,27 @@
     flex-direction: column;
   }
 
-  .login form h1 {
+  .login {
+    padding: 20px;
+    max-width: 80vw;
+    min-width: 250px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: whitesmoke;
+  }
+
+  .login form{
     cursor: default;
-    margin-top: 80px;
-    margin-bottom: 0;
+  }
+
+  .login form h1 {
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 70px;
   }
 
   .login form p {
-    cursor: default;
+    margin-bottom: 10px;
   }
 
   label {
@@ -92,8 +96,8 @@
   input[type="text"],
   input[type="password"] {
     width: 100%;
-    margin-bottom: 15px;
     padding: 10px;
+    margin-bottom: 15px;
     box-sizing: border-box;
     border: 1px solid #ccc;
   }

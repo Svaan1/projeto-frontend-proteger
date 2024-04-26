@@ -13,7 +13,7 @@
     import {currentView} from "../../stores.js";
 </script>
 
-<div class="unselectable flex min-h-screen w-full flex-col bg-muted/40 caret-transparent ">
+<div class="unselectable flex min-h-screen w-full flex-col bg-muted/40 caret-transparent">
     <aside class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
         <nav class="flex flex-col items-center gap-4 px-2 py-4">
             <a
@@ -22,7 +22,7 @@
             >
                 <img src={logo} class="transition-all group-hover:scale-110" alt="Logo da Unifeso">
                 <!-- <Package2 class="h-4 w-4 transition-all group-hover:scale-110" /> -->
-                <span class="sr-only">Acme Inc</span>
+                <span class="sr-only">Unifeso</span>
             </a>
             <Separator class="my-4" />
             <Tooltip.Root>
@@ -75,15 +75,16 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                            use:builder.action
-                            {...builder}
+                        on:click={() => currentView.set("settings")}
+                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                        use:builder.action
+                        {...builder}
                     >
                         <Settings class="h-5 w-5" />
                         <span class="sr-only">Settings</span>
                     </button>
                 </Tooltip.Trigger>
-                <Tooltip.Content side="right">Settings</Tooltip.Content>
+                <Tooltip.Content side="right">Configurações</Tooltip.Content>
             </Tooltip.Root>
         </nav>
     </aside>
