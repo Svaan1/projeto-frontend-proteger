@@ -1,260 +1,295 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": {
-            "type": "grafana",
-            "uid": "-- Grafana --"
-          },
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
-        }
-      ]
-    },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 2,
-    "links": [],
-    "panels": [
+  "annotations": {
+    "list": [
       {
+        "builtIn": 1,
         "datasource": {
-          "type": "grafana-postgresql-datasource",
-          "uid": "PCC52D03280B7034C"
+          "type": "grafana",
+          "uid": "-- Grafana --"
         },
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "custom": {
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "lat"
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": true,
-                    "tooltip": true,
-                    "viz": true
-                  }
-                },
-                {
-                  "id": "decimals",
-                  "value": 15
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "lng"
-              },
-              "properties": [
-                {
-                  "id": "custom.hideFrom",
-                  "value": {
-                    "legend": true,
-                    "tooltip": true,
-                    "viz": true
-                  }
-                },
-                {
-                  "id": "decimals",
-                  "value": 15
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 18,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 1,
-        "options": {
-          "basemap": {
-            "config": {},
-            "name": "Layer 0",
-            "type": "osm-standard"
-          },
-          "controls": {
-            "mouseWheelZoom": true,
-            "showAttribution": true,
-            "showDebug": false,
-            "showMeasure": false,
-            "showScale": false,
-            "showZoom": true
-          },
-          "layers": [
-            {
-              "config": {
-                "showLegend": true,
-                "style": {
-                  "color": {
-                    "fixed": "dark-red"
-                  },
-                  "opacity": 0.4,
-                  "rotation": {
-                    "fixed": 0,
-                    "max": 360,
-                    "min": -360,
-                    "mode": "mod"
-                  },
-                  "size": {
-                    "fixed": 5,
-                    "max": 15,
-                    "min": 2
-                  },
-                  "symbol": {
-                    "fixed": "img/icons/marker/triangle.svg",
-                    "mode": "fixed"
-                  },
-                  "symbolAlign": {
-                    "horizontal": "center",
-                    "vertical": "center"
-                  },
-                  "textConfig": {
-                    "fontSize": 12,
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "textAlign": "center",
-                    "textBaseline": "middle"
-                  }
-                }
-              },
-              "location": {
-                "latitude": "lat",
-                "mode": "auto"
-              },
-              "name": "Questionário",
-              "tooltip": true,
-              "type": "markers"
-            }
-          ],
-          "tooltip": {
-            "mode": "details"
-          },
-          "view": {
-            "allLayers": true,
-            "id": "fit",
-            "lat": 0,
-            "lon": 0,
-            "zoom": 15
-          }
-        },
-        "pluginVersion": "10.4.1",
-        "targets": [
-          {
-            "datasource": {
-              "type": "grafana-postgresql-datasource",
-              "uid": "PCC52D03280B7034C"
-            },
-            "editorMode": "code",
-            "format": "table",
-            "rawQuery": true,
-            "rawSql": "SELECT\r\n  forms.coord_s as lat,\r\n  forms.coord_w as lng,\r\n  --residents.*\r\n  ${questions:raw}\r\nFROM forms \r\n--JOIN residents on (forms.id = residents.form_id)",
-            "refId": "A",
-            "sql": {
-              "columns": [
-                {
-                  "parameters": [],
-                  "type": "function"
-                }
-              ],
-              "groupBy": [
-                {
-                  "property": {
-                    "type": "string"
-                  },
-                  "type": "groupBy"
-                }
-              ],
-              "limit": 50
-            }
-          }
-        ],
-        "title": "Questionários Preenchidos",
-        "type": "geomap"
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
       }
-    ],
-    "schemaVersion": 39,
-    "tags": [],
-    "templating": {
-      "list": [
-        {
-          "current": {
-            "selected": false,
-            "text": [
-              "Questão 1",
-              "Questão 2"
-            ],
-            "value": [
-              "question_1",
-              "question_2"
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "PCC52D03280B7034C"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "lat"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              },
+              {
+                "id": "decimals",
+                "value": 15
+              }
             ]
           },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "lng"
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": true,
+                  "tooltip": true,
+                  "viz": true
+                }
+              },
+              {
+                "id": "decimals",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "osm-standard"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-red"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/triangle.svg",
+                  "mode": "fixed"
+                },
+                "symbolAlign": {
+                  "horizontal": "center",
+                  "vertical": "center"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "latitude": "lat",
+              "mode": "auto"
+            },
+            "name": "Questionário",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "fit",
+          "lat": 0,
+          "lon": 0,
+          "zoom": 15
+        }
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
           "datasource": {
             "type": "grafana-postgresql-datasource",
             "uid": "PCC52D03280B7034C"
           },
-          "definition": "SELECT text AS \"__text\", value AS \"__value\" from (values ('Questão 1','question_1'),('Questão 2','question_2'),('Questão 3','question_3'),('Questão 4','question_4'),('Questão 5','question_5'),('Questão 6','question_6'),('Questão 7','question_7'),('Questão 8','question_8'),('Questão 9','question_9'),('Questão 10','question_10'), ('Questão 11','question_11'),('Questão 12','question_12'),('Questão 13','question_13'),('Questão 14','question_14'),('Questão 15','question_15'),('Questão 16','question_16'),('Questão 17','question_17'),('Questão 18','question_18'),('Questão 19','question_19'),('Questão 20','question_20')) value(text,value);",
-          "description": "Quais questões devem ser exibidas",
-          "hide": 0,
-          "includeAll": true,
-          "label": "Questões",
-          "multi": true,
-          "name": "questions",
-          "options": [],
-          "query": "SELECT text AS \"__text\", value AS \"__value\" from (values ('Questão 1','question_1'),('Questão 2','question_2'),('Questão 3','question_3'),('Questão 4','question_4'),('Questão 5','question_5'),('Questão 6','question_6'),('Questão 7','question_7'),('Questão 8','question_8'),('Questão 9','question_9'),('Questão 10','question_10'), ('Questão 11','question_11'),('Questão 12','question_12'),('Questão 13','question_13'),('Questão 14','question_14'),('Questão 15','question_15'),('Questão 16','question_16'),('Questão 17','question_17'),('Questão 18','question_18'),('Questão 19','question_19'),('Questão 20','question_20')) value(text,value);",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "type": "query"
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  forms.coord_s as lat,\r\n  forms.coord_w as lng,\r\n  --residents.*\r\n  ${questions:raw}\r\nFROM forms \r\n--JOIN residents on (forms.id = residents.form_id)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
-      ]
-    },
-    "time": {
-      "from": "now-5y",
-      "to": "now"
-    },
-    "timepicker": {},
-    "timezone": "browser",
-    "title": "Map Dashboard",
-    "uid": "adhqdflvh15ogd",
-    "version": 8,
-    "weekStart": ""
-  }
+      ],
+      "title": "Questionários Preenchidos",
+      "type": "geomap"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "Questão 1",
+            "Questão 2",
+            "Questão 3",
+            "Questão 4",
+            "Questão 5",
+            "Questão 6",
+            "Questão 7",
+            "Questão 8",
+            "Questão 9",
+            "Questão 10",
+            "Questão 11",
+            "Questão 12",
+            "Questão 13",
+            "Questão 14",
+            "Questão 15",
+            "Questão 16",
+            "Questão 17",
+            "Questão 18",
+            "Questão 19",
+            "Questão 20"
+          ],
+          "value": [
+            "question_1",
+            "question_2",
+            "question_3",
+            "question_4",
+            "question_5",
+            "question_6",
+            "question_7",
+            "question_8",
+            "question_9",
+            "question_10",
+            "question_11",
+            "question_12",
+            "question_13",
+            "question_14",
+            "question_15",
+            "question_16",
+            "question_17",
+            "question_18",
+            "question_19",
+            "question_20"
+          ]
+        },
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "PCC52D03280B7034C"
+        },
+        "definition": "SELECT text AS \"__text\", value AS \"__value\" from (values ('Questão 1','question_1'),('Questão 2','question_2'),('Questão 3','question_3'),('Questão 4','question_4'),('Questão 5','question_5'),('Questão 6','question_6'),('Questão 7','question_7'),('Questão 8','question_8'),('Questão 9','question_9'),('Questão 10','question_10'), ('Questão 11','question_11'),('Questão 12','question_12'),('Questão 13','question_13'),('Questão 14','question_14'),('Questão 15','question_15'),('Questão 16','question_16'),('Questão 17','question_17'),('Questão 18','question_18'),('Questão 19','question_19'),('Questão 20','question_20')) value(text,value);",
+        "description": "Quais questões devem ser exibidas",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Questões",
+        "multi": true,
+        "name": "questions",
+        "options": [],
+        "query": "SELECT text AS \"__text\", value AS \"__value\" from (values ('Questão 1','question_1'),('Questão 2','question_2'),('Questão 3','question_3'),('Questão 4','question_4'),('Questão 5','question_5'),('Questão 6','question_6'),('Questão 7','question_7'),('Questão 8','question_8'),('Questão 9','question_9'),('Questão 10','question_10'), ('Questão 11','question_11'),('Questão 12','question_12'),('Questão 13','question_13'),('Questão 14','question_14'),('Questão 15','question_15'),('Questão 16','question_16'),('Questão 17','question_17'),('Questão 18','question_18'),('Questão 19','question_19'),('Questão 20','question_20')) value(text,value);",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5y",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Map Dashboard",
+  "uid": "adhqdflvh15ogd",
+  "version": 1,
+  "weekStart": ""
+}
