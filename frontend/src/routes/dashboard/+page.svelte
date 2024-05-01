@@ -53,13 +53,14 @@
 
     import DashboardLayout from "$lib/components/DashboardLayout.svelte";
     import DashboardFileSection from "$lib/components/DashboardFileSection.svelte";
+    import DashboardMap from "$lib/components/DashboardMap.svelte";
 
     export let data;
 </script>
 
 <DashboardLayout>
     {#if $currentView === "graphs"}
-        graphs
+        <DashboardMap/>
     {:else if $currentView === "files"}
         <DashboardFileSection data={data} />
     {:else if $currentView === "users"}
