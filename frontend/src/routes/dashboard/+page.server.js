@@ -12,7 +12,7 @@ export async function load({ cookies }) {
             user = await getUser(accessToken);
             files = await getFiles(accessToken);
         } catch {
-            cookies.delete("/accessToken", { path: "/" });
+            cookies.delete("accessToken", { path: "/" });
             return
         }
 
@@ -26,3 +26,10 @@ export async function load({ cookies }) {
     cookies.delete("/accessToken", { path: "/" });
     redirect(302, '/login')
 }
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+    logout: async ({ cookies }) => {
+        cookies.delete("accessToken", { path: "/" });
+    }
+};
