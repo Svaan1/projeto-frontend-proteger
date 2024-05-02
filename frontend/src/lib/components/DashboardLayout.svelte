@@ -9,8 +9,6 @@
     import * as Tooltip from "$lib/components/ui/tooltip";
     import { Separator } from "$lib/components/ui/separator"
 
-    import DashboardSettingsAlertDialog from "$lib/components/DashboardSettingsAlertDialog.svelte";
-
     import {currentView} from "../../stores.js";
 </script>
 
