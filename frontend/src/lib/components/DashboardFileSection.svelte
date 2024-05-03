@@ -1,9 +1,11 @@
 <script>
+    import {uploadFile} from "$lib/api/files.js";
+
     export let data;
     import { Button } from "$lib/components/ui/button" 
     import DashboardFileTable from "./DashboardFileTable.svelte";
 
-    async function uploadFile() {
+    async function handleUploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
 
@@ -12,26 +14,16 @@
             return;
         }
 
-        const formData = new FormData();
-        formData.append("file", file);
-
         let response;
-        try {
-            response = await fetch("http://localhost:8080/files", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Authorization': 'Bearer ' + data.accessToken
-                }
-            });
+        try{
+            response = await uploadFile(file, data.accessToken);
         } catch (error) {
-            alert("An error occurred during upload. Please try again.");
+            console.log(error);
         }
 
         if (response.status === 201) {
             fileInput.value = "";
             location.reload();
-            // não consegui trocar a currentView para files, mas deveria ser feito
         }
         else {
             alert("Ocorreu um erro!"); // usar o Alert do shadcn eventualmente
@@ -42,10 +34,10 @@
 <div class="container">
     <div id="fileUpload">
         <input type="file" name="file" id="fileInput">
-        <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
+        <Button class="uploadButton" on:click={handleUploadFile}>Enviar</Button>
     </div>
     <div id="fileTable">
-        <DashboardFileTable data={data.files} />
+        <DashboardFileTable data={data} />
     </div>
 </div>
 
