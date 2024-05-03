@@ -7,3 +7,11 @@ export async function getFiles(accessToken) {
         }
     })
 }
+
+export async function getFile(fileId, accessToken) {
+    return await makeRequest("/files/" + fileId, {
+        headers: {
+            'Authorization': `Bearer ` + accessToken,
+        }
+    })
+}
