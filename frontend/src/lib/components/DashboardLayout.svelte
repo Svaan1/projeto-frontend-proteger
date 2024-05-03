@@ -10,15 +10,11 @@
     import * as Tooltip from "$lib/components/ui/tooltip";
     import { Separator } from "$lib/components/ui/separator"
 
-    import DashboardSettingsAlertDialog from "$lib/components/DashboardSettingsAlertDialog.svelte";
+    export let currentView;
 
-    import {currentView} from "../../stores.js";
-    import { redirect } from "@sveltejs/kit";
-
-    let isSunVisible = true;
-    function toggleIcon() {
-        isSunVisible = !isSunVisible;
-        visible = !visible;
+    function setView(view) {
+        currentView.set(view)
+        localStorage.setItem("currentView", view);
     }
 </script>
 
@@ -37,7 +33,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => currentView.set("graphs")}
+                            on:click={() => setView("graphs")}
                             class:active={$currentView === 'graphs'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -52,7 +48,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => currentView.set("files")}
+                            on:click={() => setView("files")}
                             class:active={$currentView === 'files'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -67,7 +63,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => currentView.set("users")}
+                            on:click={() => setView("users")}
                             class:active={$currentView === 'users'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -84,6 +80,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
+                        on:click={() => setView("settings")}
                         class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                         use:builder.action
                         {...builder}

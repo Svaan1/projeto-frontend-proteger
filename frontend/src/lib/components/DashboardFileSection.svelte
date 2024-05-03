@@ -1,4 +1,6 @@
 <script>
+    import {uploadFile} from "$lib/api/files.js";
+
     export let data;
     import { toast } from "svelte-sonner";
     import { Button } from "$lib/components/ui/button" 
@@ -16,7 +18,7 @@
     // Convert 24-hour time to 12-hour time
     $: displayHours = hours > 12 ? hours - 12 : hours;
 
-    async function uploadFile() {
+    async function handleUploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
 
@@ -25,32 +27,19 @@
             return;
         }
 
-        const formData = new FormData();
-        formData.append("file", file);
-
         let response;
-        try {
-            response = await fetch("http://localhost:8080/files", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Authorization': 'Bearer ' + data.accessToken
-                }
-            });
-            toast.success("File uploaded with success.", {
-                description: `${displayHours}:${minutes}:${seconds} ${period}`,
-            });
-            // filesUploaded = true; // Set to true if upload succeeds
+        try{
+            response = await uploadFile(file, data.accessToken);
         } catch (error) {
-            toast.error("Ocorreu um erro na hora de enviar, tente novamente.");
+            console.log(error);
         }
 
         if (response && response.status === 201) {
             fileInput.value = "";
-            // location.reload(); // This will reload the whole page, maybe not necessary
-            // Não consegui trocar a currentView para files, mas deveria ser feito
-        } else {
-            toast.error("Ocorreu um erro, por favor tente novamente.");
+            location.reload();
+        }
+        else {
+            alert("Ocorreu um erro!"); // usar o Alert do shadcn eventualmente
         }
     }
 </script>
@@ -58,11 +47,11 @@
 <div class="container">
     <div id="fileUpload">
         <input type="file" name="file" id="fileInput">
-        <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
+        <Button class="uploadButton" on:click={handleUploadFile}>Enviar</Button>
     </div>
     <!-- {#if filesUploaded} not working with current build of my brain, maybe next month when it updates. -->
     <div id="fileTable">
-        <DashboardFileTable data={data.files} />
+        <DashboardFileTable data={data} />
     </div>
     <!--{/if} -->
 </div>
