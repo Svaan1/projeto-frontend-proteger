@@ -1,4 +1,6 @@
 <script>
+    import {uploadFile} from "$lib/api/files.js";
+
     export let data;
     import { toast } from "svelte-sonner";
     import { Button } from "$lib/components/ui/button" 
@@ -24,9 +26,6 @@
             toast.warning("Por favor, selecione um arquivo para enviar.");
             return;
         }
-
-        const formData = new FormData();
-        formData.append("file", file);
 
         let response;
         try {
@@ -58,11 +57,11 @@
 <div class="container">
     <div id="fileUpload">
         <input type="file" name="file" id="fileInput">
-        <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
+        <Button class="uploadButton" on:click={handleUploadFile}>Enviar</Button>
     </div>
     <!-- {#if filesUploaded} not working with current build of my brain, maybe next month when it updates. -->
     <div id="fileTable">
-        <DashboardFileTable data={data.files} />
+        <DashboardFileTable data={data} />
     </div>
     <!--{/if} -->
 </div>

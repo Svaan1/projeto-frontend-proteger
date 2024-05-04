@@ -14,7 +14,8 @@ const config = {
       checkOrigin: false
     },
     env: {
-      dir: "../"
+      dir: "../",
+      publicPrefix: ""
     }
   },
 
