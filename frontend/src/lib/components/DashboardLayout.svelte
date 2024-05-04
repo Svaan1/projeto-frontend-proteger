@@ -33,7 +33,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("graphs")}
+                            on:click={() => currentView.set("graphs")}
                             class:active={$currentView === 'graphs'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -48,7 +48,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("files")}
+                            on:click={() => currentView.set("files")}
                             class:active={$currentView === 'files'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -63,7 +63,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("users")}
+                            on:click={() => currentView.set("users")}
                             class:active={$currentView === 'users'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -80,7 +80,6 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                        on:click={() => setView("settings")}
                         class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                         use:builder.action
                         {...builder}
