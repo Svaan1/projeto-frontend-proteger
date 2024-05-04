@@ -3,13 +3,23 @@
     import Upload from "lucide-svelte/icons/upload";
     import Settings from "lucide-svelte/icons/settings";
     import UsersRound from "lucide-svelte/icons/users-round";
+    import { LogOut, Sun, Moon } from 'lucide-svelte';
 
     import logo from "$lib/assets/unifeso-black.ico"
 
     import * as Tooltip from "$lib/components/ui/tooltip";
     import { Separator } from "$lib/components/ui/separator"
 
+    import DashboardSettingsAlertDialog from "$lib/components/DashboardSettingsAlertDialog.svelte";
+
     import {currentView} from "../../stores.js";
+    import { redirect } from "@sveltejs/kit";
+
+    let isSunVisible = true;
+    function toggleIcon() {
+        isSunVisible = !isSunVisible;
+        visible = !visible;
+    }
 </script>
 
 <div class="unselectable flex min-h-screen w-full flex-col bg-muted/40 caret-transparent">
@@ -74,16 +84,36 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                        on:click={() => currentView.set("settings")}
                         class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                         use:builder.action
                         {...builder}
                     >
-                        <Settings class="h-5 w-5" />
-                        <span class="sr-only">Settings</span>
+                    <div class="icon-toggle">
+                        <button class="icons" on:click={toggleIcon}>
+                            {#if isSunVisible}
+                                <Sun class="h-5 w-5" />
+                            {:else}
+                                <Moon class="h-5 w-5" />
+                            {/if}
+                        </button>
+                    </div>
+                        <span class="sr-only">togglelights</span>
                     </button>
                 </Tooltip.Trigger>
-                <Tooltip.Content side="right">Configurações</Tooltip.Content>
+                <Tooltip.Content side="right">Sair</Tooltip.Content>
+            </Tooltip.Root>
+            <Tooltip.Root>
+                <Tooltip.Trigger asChild let:builder>
+                    <button
+                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                        use:builder.action
+                        {...builder}
+                    >
+                    <LogOut class="h-5 w-5"/>
+                        <span class="sr-only">logout</span>
+                    </button>
+                </Tooltip.Trigger>
+                <Tooltip.Content side="right">Sair</Tooltip.Content>
             </Tooltip.Root>
         </nav>
     </aside>
