@@ -1,27 +1,14 @@
 <script>
     export let data;
-    import { toast } from "svelte-sonner";
     import { Button } from "$lib/components/ui/button" 
     import DashboardFileTable from "./DashboardFileTable.svelte";
-    
-    let time = new Date();
-    // let filesUploaded = false; // Track if files were uploaded successfully
-
-	$: hours = time.getHours();
-	$: minutes = time.getMinutes();
-	$: seconds = time.getSeconds();
-    
-    $: period = hours >= 12 ? 'PM' : 'AM';
-    
-    // Convert 24-hour time to 12-hour time
-    $: displayHours = hours > 12 ? hours - 12 : hours;
 
     async function handleUploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
 
         if (!file) {
-            toast.warning("Por favor, selecione um arquivo para enviar.");
+            alert("Please select a file to upload");
             return;
         }
 
@@ -29,15 +16,22 @@
         formData.append("file", file);
 
         let response;
-        try{
-            response = await uploadFile(file, data.accessToken);
+        try {
+            response = await fetch("http://localhost:8080/files", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Authorization': 'Bearer ' + data.accessToken
+                }
+            });
         } catch (error) {
-            console.log(error);
+            alert("An error occurred during upload. Please try again.");
         }
 
-        if (response && response.status === 201) {
+        if (response.status === 201) {
             fileInput.value = "";
             location.reload();
+            // não consegui trocar a currentView para files, mas deveria ser feito
         }
         else {
             alert("Ocorreu um erro!"); // usar o Alert do shadcn eventualmente
@@ -50,11 +44,9 @@
         <input type="file" name="file" id="fileInput">
         <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
     </div>
-    <!-- {#if filesUploaded} not working with current build of my brain, maybe next month when it updates. -->
     <div id="fileTable">
         <DashboardFileTable data={data.files} />
     </div>
-    <!--{/if} -->
 </div>
 
 <style>
@@ -74,6 +66,10 @@
         width: 75%;
         height: 75%;
     }
+    
+    #fileInput, .uploadButton {
+        margin: 20px;
+    }
 
     .container {
         display: flex;
@@ -81,3 +77,5 @@
         align-items: center;
     }
 </style>
+
+
