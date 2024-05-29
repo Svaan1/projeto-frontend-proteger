@@ -30,7 +30,7 @@
     export let data;
 </script>
 
-<DashboardLayout currentView={currentView}>
+<DashboardLayout>
     {#if $currentView === "graphs"}
         <DashboardMap/>
     {:else if $currentView === "files"}

@@ -33,7 +33,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("graphs")}
+                            on:click={() => currentView.set("graphs")}
                             class:active={$currentView === 'graphs'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -48,7 +48,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("files")}
+                            on:click={() => currentView.set("files")}
                             class:active={$currentView === 'files'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -63,7 +63,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => setView("users")}
+                            on:click={() => currentView.set("users")}
                             class:active={$currentView === 'users'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -80,7 +80,27 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                        on:click={() => currentView.set("settings")}
+                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                        use:builder.action
+                        {...builder}
+                    >
+                    <div class="icon-toggle">
+                        <button class="icons" on:click={toggleIcon}>
+                            {#if isSunVisible}
+                                <Sun class="h-5 w-5" />
+                            {:else}
+                                <Moon class="h-5 w-5" />
+                            {/if}
+                        </button>
+                    </div>
+                        <span class="sr-only">togglelights</span>
+                    </button>
+                </Tooltip.Trigger>
+                <Tooltip.Content side="right">Sair</Tooltip.Content>
+            </Tooltip.Root>
+            <Tooltip.Root>
+                <Tooltip.Trigger asChild let:builder>
+                    <button
                         class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                         use:builder.action
                         {...builder}

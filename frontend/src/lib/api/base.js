@@ -1,4 +1,4 @@
-import { env } from "$env/dynamic/public";
+import { env } from "$env/dynamic/private";
 
 const backendHost = env.BACKEND_HOST;
 const backendPort = env.BACKEND_PORT;
