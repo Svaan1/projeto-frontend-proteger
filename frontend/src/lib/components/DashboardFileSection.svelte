@@ -1,14 +1,26 @@
 <script>
     export let data;
+    import { toast } from "svelte-sonner";
     import { Button } from "$lib/components/ui/button" 
     import DashboardFileTable from "./DashboardFileTable.svelte";
 
-    async function handleUploadFile() {
+    let time = new Date();
+
+	$: hours = time.getHours();
+	$: minutes = time.getMinutes();
+	$: seconds = time.getSeconds();
+    
+    $: period = hours >= 12 ? 'PM' : 'AM';
+    
+    // Convert 24-hour time to 12-hour time
+    $: displayHours = hours > 12 ? hours - 12 : hours;
+
+    async function uploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
 
         if (!file) {
-            alert("Please select a file to upload");
+            toast.warning("Por favor, selecione um arquivo para enviar.");
             return;
         }
 
@@ -24,17 +36,19 @@
                     'Authorization': 'Bearer ' + data.accessToken
                 }
             });
+            toast.success("Arquivo enviado com sucesso.", {
+                description: `${displayHours}:${minutes}:${seconds} ${period}`,
+            });
         } catch (error) {
-            alert("An error occurred during upload. Please try again.");
+            toast.error("Ocorreu um erro na hora de enviar, tente novamente.");
         }
 
         if (response.status === 201) {
             fileInput.value = "";
             location.reload();
-            // não consegui trocar a currentView para files, mas deveria ser feito
         }
         else {
-            alert("Ocorreu um erro!"); // usar o Alert do shadcn eventualmente
+            toast.error("Ocorreu um erro, por favor tente novamente.");
         }
     }
 </script>
@@ -66,10 +80,6 @@
         width: 75%;
         height: 75%;
     }
-    
-    #fileInput, .uploadButton {
-        margin: 20px;
-    }
 
     .container {
         display: flex;
@@ -77,5 +87,3 @@
         align-items: center;
     }
 </style>
-
-
