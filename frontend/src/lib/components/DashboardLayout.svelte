@@ -82,14 +82,16 @@
             </Tooltip.Root>
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
-                    <button
-                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        use:builder.action
-                        {...builder}
-                    >
-                    <LogOut size={48} strokeWidth={1.5} />
-                        <span class="sr-only">logout</span>
-                    </button>
+                    <form method="POST" action="?/logout" class="icon-leave">
+                        <button
+                            class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                            use:builder.action
+                            {...builder}
+                        >
+                        <LogOut size={48} strokeWidth={1.5} />
+                            <span class="sr-only">logout</span>
+                        </button>
+                    </form>
                 </Tooltip.Trigger>
                 <Tooltip.Content side="right">Sair</Tooltip.Content> 
             </Tooltip.Root>
