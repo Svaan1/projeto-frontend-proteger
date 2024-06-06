@@ -20,34 +20,34 @@
         <DashboardMap/>
     {:else if $currentView === "files"}
         <DashboardFileSection data={data} />
-    {:else if $currentView === "users"}
+    <!-- {:else if $currentView === "users"}
         users
-    {:else if $currentView === "settings"}
-
-        <form method="POST" action="?/logout" class="icon-leave">
-            <button type="submit">
-            <LogOut class="h-5 w-5"/>
-            </button>
-            <span class="icon-text">
-                <p>Sair</p>
-            </span>
-        </form>
-
-        <div class="icon-toggle">
-            <button class="icons" on:click={toggleIcon}>
-                {#if isSunVisible && visible}
-                    <Sun class="h-5 w-5" />
-                {:else}
-                    <Moon class="h-5 w-5" />
-                {/if}
-            </button>
-        </div>
+    {:else if $currentView === "settings"} -->
     {/if}
+    <!-- <form method="POST" action="?/logout" class="icon-leave">
+        <button type="submit">
+        <LogOut class="h-5 w-5"/>
+        </button>
+        <span class="icon-text">
+            <p>Sair</p>
+        </span>
+    </form>
+
+    <div class="icon-toggle">
+        <button class="icons" on:click={toggleIcon}>
+            {#if isSunVisible && visible}
+                <Sun class="h-5 w-5" />
+            {:else}
+                <Moon class="h-5 w-5" />
+            {/if}
+        </button>
+    </div> -->
+    
 </DashboardLayout>
 
 <!-- style -->
 <style>
-    .icons {
+    /* .icons {
         color: black;
         opacity: 1;
     }
@@ -85,7 +85,7 @@
 
     .icon-leave:not(:hover) {
         animation: moveIconBackward 0.3s ease forwards;
-    }
+    } */
 
     @keyframes moveIcon {
         from {
