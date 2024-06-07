@@ -11,15 +11,21 @@
   const files = writable(data.files);
 
   const formatter = new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: "2-digit",
-      minute: "2-digit"
-  });
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'America/Sao_Paulo'
+});
 
   function formatDate(dateString) {
       const date = new Date(dateString);
+
+      // por algum motivo (prob por causa do docker) ele ta salvando com datetime de UTC
+      // mas com formatação de pt-BR, então eu to subtraindo 3 horas pra ficar o tempo pt-BR de verdade
+      date.setHours(date.getHours() - 3);
+
       return formatter.format(date);
   }
 
