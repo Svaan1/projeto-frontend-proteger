@@ -2,20 +2,10 @@
     export let data;
     import { toast } from "svelte-sonner";
     import { Button } from "$lib/components/ui/button" 
+    import {uploadFile} from "$lib/api/files.js";
     import DashboardFileTable from "./DashboardFileTable.svelte";
 
-    let time = new Date();
-
-	$: hours = time.getHours();
-	$: minutes = time.getMinutes();
-	$: seconds = time.getSeconds();
-    
-    $: period = hours >= 12 ? 'PM' : 'AM';
-    
-    // Convert 24-hour time to 12-hour time
-    $: displayHours = hours > 12 ? hours - 12 : hours;
-
-    async function uploadFile() {
+    async function handleUploadFile() {
         const fileInput = document.getElementById("fileInput");
         const file = fileInput.files[0];
 
@@ -29,16 +19,7 @@
 
         let response;
         try {
-            response = await fetch("http://localhost:8080/files", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Authorization': 'Bearer ' + data.accessToken
-                }
-            });
-            toast.success("Arquivo enviado com sucesso.", {
-                description: `${displayHours}:${minutes}:${seconds} ${period}`,
-            });
+            response = await uploadFile(file, data.accessToken);
         } catch (error) {
             toast.error("Ocorreu um erro na hora de enviar, tente novamente.");
         }
@@ -56,10 +37,10 @@
 <div class="container">
     <div id="fileUpload">
         <input type="file" name="file" id="fileInput">
-        <Button class="uploadButton" on:click={uploadFile}>Enviar</Button>
+        <Button class="uploadButton" on:click={handleUploadFile}>Enviar</Button>
     </div>
     <div id="fileTable">
-        <DashboardFileTable data={data.files} />
+        <DashboardFileTable data={data} />
     </div>
 </div>
 
