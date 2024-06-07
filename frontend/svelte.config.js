@@ -1,5 +1,5 @@
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-import adapter from "@sveltejs/adapter-node";
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import adapter from '@sveltejs/adapter-node'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,16 +14,17 @@ const config = {
       checkOrigin: false
     },
     env: {
-      dir: "../"
+      dir: '../',
+      publicPrefix: ''
     }
   },
 
   alias: {
-    "@/*": "./src/lib/*",
-    $images: "src/lib/assets/images",
+    '@/*': './src/lib/*',
+    $images: 'src/lib/assets/images'
   },
 
-  preprocess: [vitePreprocess({})],
-};
+  preprocess: [vitePreprocess({})]
+}
 
-export default config;
+export default config

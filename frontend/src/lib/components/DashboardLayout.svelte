@@ -8,7 +8,12 @@
     import * as Tooltip from "$lib/components/ui/tooltip";
     import { Separator } from "$lib/components/ui/separator"
 
-    import {currentView} from "../../stores.js";
+    export let currentView;
+
+    function setView(view) {
+        currentView.set(view)
+        localStorage.setItem("currentView", view);
+    }
 
     let isSunVisible = true;
     function toggleIcon() {
@@ -30,7 +35,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button 
-                            on:click={() => currentView.set("graphs")}
+                            on:click={() => setView("graphs")}
                             class:active={$currentView === 'graphs'}
                             class="flex items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
@@ -45,7 +50,7 @@
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <button
-                            on:click={() => currentView.set("files")}
+                            on:click={() => setView("files")}
                             class:active={$currentView === 'files'}
                             class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             use:builder.action
