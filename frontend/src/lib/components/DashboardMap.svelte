@@ -59,8 +59,8 @@
       <iframe title="age" src={questionBaseURL+"17"} width="450" height="200" frameborder="0"/>                   <!-- Idade -->
       <iframe title="sensorial-impairment" src={questionBaseURL+"13"} width="450" height="200" frameborder="0"/>  <!-- Deficiência Sensorial -->
       <iframe title="mobility-impairment" src={questionBaseURL+"12"} width="450" height="200" frameborder="0"/>   <!-- Restrição de Mobilidade -->
-      <iframe title="health-impairment" src={questionBaseURL+"14"} width="450" height="200" frameborder="0"/>     <!-- Agravo de Saúde -->
-      <iframe title="mental-impairment" src={questionBaseURL+"18"} width="450" height="200" frameborder="0"/>     <!-- Portador de Transtorno / Deficiência Mental -->    
+      <iframe title="health-impairment" src={questionBaseURL+"15"} width="450" height="200" frameborder="0"/>     <!-- Agravo de Saúde -->
+      <iframe title="mental-impairment" src={questionBaseURL+"14"} width="450" height="200" frameborder="0"/>     <!-- Portador de Transtorno / Deficiência Mental -->    
       <iframe title="education" src={questionBaseURL+"16"} width="450" height="200" frameborder="0"/>             <!-- Educação -->
     </div>
   </Tabs.Content>
