@@ -45,7 +45,6 @@ export const actions = {
                 path: "/"
             })
             redirect(302, "/dashboard")
-            return
         }
 
         return { success: false, message: data.detail, }

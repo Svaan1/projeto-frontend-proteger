@@ -1,12 +1,13 @@
 <script>
-  import {goto} from "$app/navigation";
   import logoImage from "$lib/assets/unifeso.png";
 
   export let form;
 </script>
 
 {#if form?.success === false}
-  {form.message} 
+  <div class="message-box {form.success ? 'success' : 'error'}">
+    {form.message}
+  </div>
 {/if}
 
 <div class="container">
@@ -30,14 +31,14 @@
         placeholder="Senha"
         required
       />
-      <button type="submit" id="btnSubmit" onsubmit="return false;"
+      <button type="submit" id="btnSubmit"
         >Login</button
       >
       <p class="resetPswd">
         <!-- svelte-ignore a11y-invalid-attribute -->
         Esqueceu a senha? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Clique aqui para resetar</a>.
       </p>
-      <button class="registerBtn" type="button" on:click={() => goto("/register")}>Registrar</button>
+      <button class="registerBtn" type="button" on:click={() => window.location.href = '/register'}>Registrar</button>
     </form>
   </div>
 </div>
@@ -158,5 +159,25 @@
   .resetPswd {
     font-size: 15px;
     margin-bottom: 0;
+  }
+
+  .message-box {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .message-box.success {
+    color: green;
+    background-color: #e0ffe0;
+    border: 1px solid green;
+  }
+
+  .message-box.error {
+    color: red;
+    background-color: #ffe0e0;
+    border: 1px solid red;
   }
 </style>
