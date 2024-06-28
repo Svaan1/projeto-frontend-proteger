@@ -4,10 +4,6 @@
     export let form;
 </script>
 
-{#if form?.success === false}
-    {form?.message}
-{/if}
-
 
 <div class="container">
     <div class="signup">
@@ -20,6 +16,11 @@
             <input type="password" id="password" name="password" placeholder="Senha" required="required" title="Coloque uma senha">
             <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirmar Senha" required="required" title="Confirme a sua senha">
             <button type="submit" id="btnSubmit">Confirmar</button>
+            {#if form?.success === false}
+                <div class="message-box {form.success ? 'success' : 'error'}">
+                    {form.message}
+                </div>
+            {/if}
         </form>
     </div>
 </div>
@@ -125,4 +126,23 @@
     text-decoration: underline;
   }
 
+  .message-box {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .message-box.success {
+    color: green;
+    background-color: #e0ffe0;
+    border: 1px solid green;
+  }
+
+  .message-box.error {
+    color: red;
+    background-color: #ffe0e0;
+    border: 1px solid red;
+  }
 </style>
