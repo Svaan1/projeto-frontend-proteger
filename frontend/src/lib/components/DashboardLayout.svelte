@@ -1,7 +1,7 @@
 <script>
     import LineChart from "lucide-svelte/icons/line-chart";
     import Upload from "lucide-svelte/icons/upload";
-    import { LogOut, Sun, Moon } from 'lucide-svelte';
+    import { LogOut } from 'lucide-svelte';
 
     import logo from "$lib/assets/unifeso-black.ico"
 
@@ -64,27 +64,6 @@
             </Tooltip.Root>
         </nav>
         <nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
-            <Tooltip.Root>
-                <Tooltip.Trigger asChild let:builder>
-                    <button
-                        class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        use:builder.action
-                        {...builder}
-                    >
-                    <div class="icon-toggle">
-                        <button class="icons" on:click={toggleIcon}>
-                            {#if isSunVisible}
-                                <Sun size={32} strokeWidth={1.5} />
-                            {:else}
-                                <Moon size={32} strokeWidth={1.5} />
-                            {/if}
-                        </button>
-                    </div>
-                        <span class="sr-only">togglelights</span>
-                    </button>
-                </Tooltip.Trigger>
-                <Tooltip.Content side="right">Mudar tema</Tooltip.Content>
-            </Tooltip.Root>
             <Tooltip.Root>
                 <Tooltip.Trigger asChild let:builder>
                     <form method="POST" action="?/logout" class="icon-leave">
