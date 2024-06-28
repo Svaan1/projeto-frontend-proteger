@@ -4,11 +4,7 @@
   export let form;
 </script>
 
-{#if form?.success === false}
-  <div class="message-box {form.success ? 'success' : 'error'}">
-    {form.message}
-  </div>
-{/if}
+
 
 <div class="container">
   <div class="login">
@@ -40,6 +36,11 @@
       </p>
       <button class="registerBtn" type="button" on:click={() => window.location.href = '/register'}>Registrar</button>
     </form>
+    {#if form?.success === false}
+      <div class="message-box {form.success ? 'success' : 'error'}">
+        {form.message}
+      </div>
+    {/if}
   </div>
 </div>
 
