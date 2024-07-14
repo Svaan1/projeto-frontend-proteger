@@ -4,8 +4,6 @@
   export let form;
 </script>
 
-
-
 <div class="container">
   <div class="login">
     <form method="POST" id="loginForm">
@@ -27,14 +25,13 @@
         placeholder="Senha"
         required
       />
-      <button type="submit" id="btnSubmit"
-        >Login</button
+      <button type="submit" id="btnSubmit">Login</button>
+
+      <button
+        class="registerBtn"
+        type="button"
+        on:click={() => (window.location.href = "/register")}>Registrar</button
       >
-      <p class="resetPswd">
-        <!-- svelte-ignore a11y-invalid-attribute -->
-        Esqueceu a senha? <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">Clique aqui para resetar</a>.
-      </p>
-      <button class="registerBtn" type="button" on:click={() => window.location.href = '/register'}>Registrar</button>
     </form>
     {#if form?.success === false}
       <div class="message-box {form.success ? 'success' : 'error'}">
@@ -48,7 +45,7 @@
 <style>
   .container {
     font-family: "Montserrat", sans-serif;
-    
+
     height: 100vh;
     display: flex;
     align-items: center;
@@ -56,7 +53,6 @@
     justify-content: center;
   }
 
-  
   img {
     width: 80px;
     position: absolute;
@@ -77,7 +73,7 @@
     background-color: whitesmoke;
   }
 
-  .login form{
+  .login form {
     cursor: default;
   }
 
