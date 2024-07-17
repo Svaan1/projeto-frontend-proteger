@@ -37,8 +37,6 @@ export const actions = {
 
     if (response.ok) {
       cookies.set('accessToken', data.access_token, {
-        httpOnly: false,
-        sameSite: true,
         path: '/'
       })
       redirect(302, '/dashboard')
