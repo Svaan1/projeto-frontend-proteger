@@ -131,18 +131,6 @@
     margin-top: 5px;
   }
 
-  p a {
-    color: rgb(128, 128, 128);
-    margin-top: 10px;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: rgb(56, 56, 56);
-    text-decoration: underline;
-  }
-
   .registerBtn {
     color: black;
     background: transparent;
