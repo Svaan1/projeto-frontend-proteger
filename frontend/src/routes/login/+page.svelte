@@ -152,12 +152,6 @@
   .registerBtn:hover {
     background: transparent;
   }
-
-  .resetPswd {
-    font-size: 15px;
-    margin-bottom: 0;
-  }
-
   .message-box {
     padding: 10px;
     border-radius: 5px;
