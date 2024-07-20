@@ -5,7 +5,7 @@
   import * as Tabs from "$lib/components/ui/tabs";
 
   let selectedQuestions = [];
-  let serverIp = "http://10.10.0.71";
+  const serverIp = "http://10.10.0.71";
   const baseURL = `${serverIp}/d-solo/`;
 
   $: mapDashboardURL =
