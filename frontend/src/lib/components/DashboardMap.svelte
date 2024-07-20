@@ -5,7 +5,9 @@
   import * as Tabs from "$lib/components/ui/tabs";
 
   let selectedQuestions = [];
-  const baseURL = "http://127.0.0.1:3000/d-solo/"; // eventually change this to the actual URL inside docker
+  let serverIp = "10.10.0.71";
+  const baseURL = `${serverIp}/d-solo/`;
+
   $: mapDashboardURL =
     baseURL + "adhqdflvh15ogd/map-dashboard?orgId=1&panelId=1";
 

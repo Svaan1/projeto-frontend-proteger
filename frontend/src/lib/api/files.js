@@ -20,7 +20,7 @@ export async function uploadFile (file, accessToken) {
   const formData = new FormData()
   formData.append('file', file)
 
-  return await fetch('http://127.0.0.1:8080/files', {
+  return await makeRequest('/files', {
     method: 'POST',
     body: formData,
     headers: {
@@ -30,7 +30,7 @@ export async function uploadFile (file, accessToken) {
 }
 
 export async function deleteFile (fileId, accessToken) {
-  return await fetch('http://127.0.0.1:8080/files/' + fileId, {
+  return await makeRequest('/files/' + fileId, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ` + accessToken
