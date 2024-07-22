@@ -93,6 +93,18 @@
                 "value": 15
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "question_(.*?)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "$1"
+              }
+            ]
           }
         ]
       },
@@ -174,7 +186,7 @@
           "zoom": 15
         }
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.1",
       "targets": [
         {
           "datasource": {
@@ -206,6 +218,15 @@
         }
       ],
       "title": "Questionários Preenchidos",
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "question_(.*?)",
+            "renamePattern": "Questão $1"
+          }
+        }
+      ],
       "type": "geomap"
     }
   ],
@@ -228,15 +249,11 @@
             "Questão 9",
             "Questão 10",
             "Questão 11",
-            "Questão 12",
             "Questão 13",
-            "Questão 14",
             "Questão 15",
             "Questão 16",
             "Questão 17",
-            "Questão 18",
-            "Questão 19",
-            "Questão 20"
+            "Questão 18"
           ],
           "value": [
             "question_1",
@@ -250,15 +267,11 @@
             "question_9",
             "question_10",
             "question_11",
-            "question_12",
             "question_13",
-            "question_14",
             "question_15",
             "question_16",
             "question_17",
-            "question_18",
-            "question_19",
-            "question_20"
+            "question_18"
           ]
         },
         "datasource": {
@@ -286,6 +299,7 @@
     "from": "now-5y",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
   "title": "Map Dashboard",
