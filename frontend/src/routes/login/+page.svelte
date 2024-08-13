@@ -46,6 +46,7 @@
   .container {
     font-family: "Montserrat", sans-serif;
 
+    width: 50vw;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -65,6 +66,7 @@
   }
 
   .login {
+    width: 18vw;
     padding: 20px;
     max-width: 80vw;
     min-width: 250px;
